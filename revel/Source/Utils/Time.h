@@ -5,24 +5,24 @@
 namespace rvl {
 	class Time {
 	public:
-		Time();
-		~Time();
+						Time();
+						~Time();
 
-		void Update();
+		void			Update();
 
-		const float& DeltaTime() const;
-		const float& UnScaledDeltaTime() const;
+		const float&	DeltaTime() const;
+		const float&	UnScaledDeltaTime() const;
 
-		void SetTimeScale(const float& timeScale);
-		const float& GetTimeScale() const;
+		void			SetTimeScale(const float& timeScale);
+		const float&	GetTimeScale() const;
 
 	private:
-		float m_TimeScale;
-		float m_DeltaTime;
+		float			m_TimeScale;
+		float			m_DeltaTime;
 
-		sf::Clock m_Clock;
-		sf::Time m_ElapsedTime;
+		sf::Clock		m_Clock;
+		sf::Time		m_ElapsedTime;
 
-		void RestartClock();
+		void			RestartClock();
 	};
 }

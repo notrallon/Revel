@@ -142,6 +142,10 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Source\App\RevelGame.cpp" />
+    <ClCompile Include="Source\Component\Component.cpp" />
+    <ClCompile Include="Source\Component\DrawableComponent.cpp" />
+    <ClCompile Include="Source\Component\UpdateableComponent.cpp" />
+    <ClCompile Include="Source\Entity\GameObject.cpp" />
     <ClCompile Include="Source\Utils\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,7 +155,10 @@
     <ClInclude Include="Source\Audio\Audio.h" />
     <ClInclude Include="Source\Common.h" />
     <ClInclude Include="Source\Component\Component.h" />
+    <ClInclude Include="Source\Component\DrawableComponent.h" />
+    <ClInclude Include="Source\Component\UpdateableComponent.h" />
     <ClInclude Include="Source\Entity\Entity.h" />
+    <ClInclude Include="Source\Entity\GameObject.h" />
     <ClInclude Include="Source\Graphics\Window.h" />
     <ClInclude Include="Source\Math\Math.h" />
     <ClInclude Include="Source\Utils\Time.h" />

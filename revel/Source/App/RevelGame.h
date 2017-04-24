@@ -9,12 +9,11 @@
 namespace rvl {
 	class RevelGame {
 	public:
-		// Temporary constructors until we can read in .ini files
-		RevelGame();
-		~RevelGame();
+							RevelGame();
+							~RevelGame();
 
-		void Start();
-		void Stop();
+		void				Start();
+		void				Stop();
 
 	private:
 		sf::RenderWindow	m_Window;
@@ -22,11 +21,11 @@ namespace rvl {
 
 		f32					m_FixedTickRate;
 
-		void Run();
-		void HandleEvents();
-		void FixedUpdate();
-		void Update();
-		void LateUpdate();
-		void Draw();
+		void				Run();
+		void				HandleEvents();
+		void				FixedUpdate();
+		void				Update();
+		void				LateUpdate();
+		void				Draw();
 	};
 }
