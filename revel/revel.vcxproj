@@ -145,6 +145,8 @@
     <ClCompile Include="Source\Utils\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Source\App\RevelGame.h" />
     <ClInclude Include="Source\Audio\Audio.h" />
     <ClInclude Include="Source\Common.h" />
@@ -154,6 +156,7 @@
     <ClInclude Include="Source\Math\Math.h" />
     <ClInclude Include="Source\Utils\Time.h" />
     <ClInclude Include="Source\Utils\Utils.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
