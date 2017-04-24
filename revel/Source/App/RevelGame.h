@@ -11,8 +11,6 @@ namespace rvl {
 	public:
 		// Temporary constructors until we can read in .ini files
 		RevelGame();
-		RevelGame(uint32 width, uint32 height, const char* title = "Revel", bool fullScreen = false);
-		RevelGame(sf::Vector2u size, const char* title = "Revel", bool fullScreen = false);
 		~RevelGame();
 
 		void Start();
@@ -26,6 +24,5 @@ namespace rvl {
 		void HandleEvents();
 		void Update();
 		void Draw();
-		bool CreateWindow(uint32 width, uint32 height, const char* title, uint32 style);
 	};
 }

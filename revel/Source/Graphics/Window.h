@@ -12,7 +12,7 @@ namespace rvl {
 
 		bool Create(sf::Vector2u size, const char* title, bool fullScreen);
 
-		sf::RenderWindow& GetWindow() const;
+		sf::RenderWindow&		GetWindow() const;
 		const sf::Vector2u&		GetSize() const;
 
 		const uint32&			GetWidth() const;

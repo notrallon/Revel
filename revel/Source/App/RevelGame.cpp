@@ -1,32 +1,39 @@
 #include "RevelGame.h"
 #include <iostream>
 
+#define RVL_VERSION_MAJOR "0"
+#define RVL_VERSION_MINOR "0"
+#define RVL_VERSION_PATCH "1"
+
 namespace rvl {
+
 	RevelGame::RevelGame() {
-		m_Window.create(sf::VideoMode(800, 600), "Revel", sf::Style::Default);
-		Run();
+		
 	}
 
-	RevelGame::RevelGame(uint32 width, uint32 height, const char * title, bool fullScreen) {
-		uint32 style = fullScreen ? sf::Style::Fullscreen : sf::Style::Default;
-
-		if (!CreateWindow(width, height, title, style)) {
-			std::cout << "Could not create window" << std::endl;
-		}
-	}
-	
-	RevelGame::RevelGame(sf::Vector2u size, const char * title, bool fullScreen) {
-		uint32 style = fullScreen ? sf::Style::Fullscreen : sf::Style::Default;
-
-		if (!CreateWindow(size.x, size.y, title, style)) {
-			std::cout << "Could not create window" << std::endl;
-		}
-	}
-	
 	RevelGame::~RevelGame() {
 	}
 	
 	void RevelGame::Start() {
+		const char* file = ".\\Settings.ini";
+		int width = GetPrivateProfileInt("Options", "ScreenWidth", 800, file);
+		int height = GetPrivateProfileInt("Options", "ScreenHeight", 600, file);
+		char title[100];
+		GetPrivateProfileString("Options", "Title", "Revel Engine", title, sizeof(title) / sizeof(title[0]), file);
+
+		bool fullScreen = GetPrivateProfileInt("Options", "FullScreen", 0, file) != 0;
+
+		uint32 style = fullScreen ? sf::Style::Fullscreen : sf::Style::Default;
+
+		std::string revelVersion = ": Revel Engine Alpha Version - ";
+		revelVersion.append(RVL_VERSION_MAJOR);
+		revelVersion.append(".");
+		revelVersion.append(RVL_VERSION_MINOR);
+		revelVersion.append(".");
+		revelVersion.append(RVL_VERSION_PATCH);
+
+		m_Window.create(sf::VideoMode(width, height), title + revelVersion, style);
+		Run();
 	}
 	
 	void RevelGame::Stop() {
@@ -84,10 +91,5 @@ namespace rvl {
 		m_Window.clear(sf::Color::Magenta);
 
 		m_Window.display();
-	}
-
-	bool RevelGame::CreateWindow(uint32 width, uint32 height, const char* title, uint32 style) {
-		m_Window.create(sf::VideoMode(width, height), title, style);
-		return true;
 	}
 }

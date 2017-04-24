@@ -14,7 +14,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR lpCmdLin
 #endif
 
 	rvl::RevelGame game;
-
+	game.Start();
 	
 	return EXIT_SUCCESS;
 }
