@@ -3,7 +3,7 @@
 #include "Component.h"
 
 namespace rvl {
-	class DrawableComponent : public rvl::Component
+	class DrawableComponent : public Component
 	{
 	public:
 		DrawableComponent();

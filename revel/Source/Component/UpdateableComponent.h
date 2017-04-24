@@ -2,13 +2,15 @@
 
 #include "Component.h"
 
-class UpdateableComponent : public rvl::Component
-{
-public:
-	UpdateableComponent();
-	~UpdateableComponent();
+namespace rvl {
+	class UpdateableComponent : public Component
+	{
+	public:
+		UpdateableComponent();
+		~UpdateableComponent();
 
-	virtual void FixedUpdate() = 0;
-    virtual void Update() = 0;
-};
+		virtual void FixedUpdate() = 0;
+		virtual void Update() = 0;
+	};
+}
 

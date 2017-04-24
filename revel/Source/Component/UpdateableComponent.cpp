@@ -2,11 +2,11 @@
 
 
 
-UpdateableComponent::UpdateableComponent()
+rvl::UpdateableComponent::UpdateableComponent()
 {
 }
 
 
-UpdateableComponent::~UpdateableComponent()
+rvl::UpdateableComponent::~UpdateableComponent()
 {
 }
