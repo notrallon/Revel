@@ -6,10 +6,10 @@ namespace rvl {
 	class DrawableComponent : public Component
 	{
 	public:
-		DrawableComponent();
-		~DrawableComponent();
+							DrawableComponent();
+							~DrawableComponent();
 
-		virtual void Draw() = 0;
+		virtual void		Draw() = 0;
 	};
 }
 

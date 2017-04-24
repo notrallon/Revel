@@ -6,11 +6,11 @@ namespace rvl {
 	class UpdateableComponent : public Component
 	{
 	public:
-		UpdateableComponent();
-		~UpdateableComponent();
+							UpdateableComponent();
+							~UpdateableComponent();
 
-		virtual void FixedUpdate() = 0;
-		virtual void Update() = 0;
+		virtual void		FixedUpdate() = 0;
+		virtual void		Update() = 0;
 	};
 }
 
