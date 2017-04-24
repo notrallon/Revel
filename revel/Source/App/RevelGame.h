@@ -20,9 +20,13 @@ namespace rvl {
 		sf::RenderWindow	m_Window;
 		Time				m_Time;
 
+		f32					m_FixedTickRate;
+
 		void Run();
 		void HandleEvents();
+		void FixedUpdate();
 		void Update();
+		void LateUpdate();
 		void Draw();
 	};
 }

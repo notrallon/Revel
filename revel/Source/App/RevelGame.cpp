@@ -1,5 +1,6 @@
 #include "RevelGame.h"
 #include <iostream>
+#include <sstream>
 
 #define RVL_VERSION_MAJOR "0"
 #define RVL_VERSION_MINOR "0"
@@ -16,6 +17,8 @@ namespace rvl {
 	
 	void RevelGame::Start() {
 		const char* file = ".\\Settings.ini";
+
+		m_FixedTickRate = GetPrivateProfileInt("Options", "FixedTickRate", 60, file);
 		int width = GetPrivateProfileInt("Options", "ScreenWidth", 800, file);
 		int height = GetPrivateProfileInt("Options", "ScreenHeight", 600, file);
 		char title[100];
@@ -25,14 +28,11 @@ namespace rvl {
 
 		uint32 style = fullScreen ? sf::Style::Fullscreen : sf::Style::Default;
 
-		std::string revelVersion = ": Revel Engine Alpha Version - ";
-		revelVersion.append(RVL_VERSION_MAJOR);
-		revelVersion.append(".");
-		revelVersion.append(RVL_VERSION_MINOR);
-		revelVersion.append(".");
-		revelVersion.append(RVL_VERSION_PATCH);
 
-		m_Window.create(sf::VideoMode(width, height), title + revelVersion, style);
+		std::stringstream revelVersion; 
+		revelVersion << ": Revel Engine Alpha Version - " << RVL_VERSION_MAJOR << "." << RVL_VERSION_MINOR << "." << RVL_VERSION_PATCH;
+
+		m_Window.create(sf::VideoMode(width, height), title + revelVersion.str(), style);
 		Run();
 	}
 	
@@ -43,14 +43,18 @@ namespace rvl {
 	void RevelGame::Run() {
 		// Temporary variables for calculating fps.
 		// TODO (richard): Move to it's own "fps" class
-		f32 fps = 0.0f;
-		f32 timepassed = 0.0f;
-		f32 startTime = 0.0f;
-		uint32 frames = 0.0f;
+		f32 fps			= 0.0f;
+		f32 timepassed	= 0.0f;
+		f32 startTime	= 0.0f;
+		uint32 frames	= 0.0f;
 
 		while (m_Window.isOpen()) {
+			m_Time.Update(); // Time should always be updated first
+			
 			HandleEvents();
+			FixedUpdate();
 			Update();
+			LateUpdate();
 			Draw();
 
 			// Add deltatime to our timepassed variable
@@ -81,14 +85,32 @@ namespace rvl {
 			}
 		}
 	}
+
+	void RevelGame::FixedUpdate() {
+		static float elapsed;
+
+		elapsed += m_Time.DeltaTime();
+
+		if (elapsed < 1 / m_FixedTickRate) {
+			return;
+		}
+
+		// Update
+
+		elapsed -= 1 / m_FixedTickRate;
+	}
 	
 	void RevelGame::Update() {
-		m_Time.Update();
-		//std::cout << m_Time.DeltaTime() << std::endl;
+	}
+
+	void RevelGame::LateUpdate() {
+
 	}
 	
 	void RevelGame::Draw() {
 		m_Window.clear(sf::Color::Magenta);
+
+		// Draw everything
 
 		m_Window.display();
 	}
