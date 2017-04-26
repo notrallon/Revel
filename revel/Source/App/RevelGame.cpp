@@ -33,13 +33,23 @@ namespace rvl {
 		revelVersion << ": Revel Engine Alpha Version - " << RVL_VERSION_MAJOR << "." << RVL_VERSION_MINOR << "." << RVL_VERSION_PATCH;
 
 		m_Window.create(sf::VideoMode(width, height), title + revelVersion.str(), style);
+
+		// Set up our context
+		m_Context.time = &m_Time;
+
+		m_Scene.Load("orthogonal-outside.tmx");
+
 		Run();
 	}
 	
 	void RevelGame::Stop() {
 		m_Window.close();
 	}
-	
+
+	const SharedContext& RevelGame::GetContext() const {
+		return m_Context;
+	}
+
 	void RevelGame::Run() {
 		// Temporary variables for calculating fps.
 		// TODO (richard): Move to it's own "fps" class
@@ -111,6 +121,7 @@ namespace rvl {
 		m_Window.clear(sf::Color::Magenta);
 
 		// Draw everything
+		m_Scene.Draw(m_Window);
 
 		m_Window.display();
 	}

@@ -3,29 +3,35 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-#include "../Utils/Time.h"
 #include "../Graphics/Window.h"
+#include "../SharedContext.h"
+#include "../Scene.h"
 
 namespace rvl {
 	class RevelGame {
 	public:
-							RevelGame();
-							~RevelGame();
+								RevelGame();
+								~RevelGame();
 
-		void				Start();
-		void				Stop();
+		void					Start();
+		void					Stop();
+
+		const SharedContext&	GetContext() const;
 
 	private:
-		sf::RenderWindow	m_Window;
-		Time				m_Time;
+		sf::RenderWindow		m_Window;
+		Time					m_Time;
+		Scene					m_Scene;
 
-		f32					m_FixedTickRate;
+		SharedContext			m_Context;
 
-		void				Run();
-		void				HandleEvents();
-		void				FixedUpdate();
-		void				Update();
-		void				LateUpdate();
-		void				Draw();
+		f32						m_FixedTickRate;
+
+		void					Run();
+		void					HandleEvents();
+		void					FixedUpdate();
+		void					Update();
+		void					LateUpdate();
+		void					Draw();
 	};
 }
