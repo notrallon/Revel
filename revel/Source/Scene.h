@@ -26,7 +26,7 @@ namespace rvl {
 		void						Update();
 		void						Draw(sf::RenderWindow& window);
 
-		bool						Load(const char* filePath);
+		bool						Load(std::string filePath);
 	private:
 		typedef std::vector<Tmx::TileLayer*>	TileLayerContainer;
 		typedef std::vector<GameObject*>		GameObjectContainer;

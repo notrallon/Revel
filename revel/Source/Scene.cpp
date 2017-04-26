@@ -19,21 +19,27 @@ namespace rvl {
 		}
 	}
 	
-	bool Scene::Load(const char* filePath) {
+	bool Scene::Load(std::string filePath) {
 		m_Map.ParseFile(filePath);
 		m_TileLayers = m_Map.GetTileLayers();
 		Tmx::Tileset* tmxTileset = *m_Map.GetTilesets().begin();
 
-		if (!m_Tileset.loadFromFile(tmxTileset->GetImage()->GetSource())) {
-			//assert("Could not load tileset");
+		sf::Image image;
+
+		if (!image.loadFromFile(tmxTileset->GetImage()->GetSource())) {
+			assert("Could not load tileset");
 			return false;
 		}
+
+		image.createMaskFromColor(sf::Color(255, 0, 255, 255));
+		m_Tileset.loadFromImage(image);
 
 		m_Height		= m_Map.GetHeight();
 		m_Width			= m_Map.GetWidth();
 		m_TileHeight	= m_Map.GetTileHeight();
 		m_TileWidth		= m_Map.GetTileWidth();
 
+		//m_Map.GetObjectGroup(0)->GetObject(0)->GetPolygon();
 
 		for (auto tiles : m_TileLayers) {
 			m_VertexLayers.push_back(new sf::VertexArray(sf::Quads, m_Height * m_Width * 4));

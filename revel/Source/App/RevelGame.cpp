@@ -37,7 +37,18 @@ namespace rvl {
 		// Set up our context
 		m_Context.time = &m_Time;
 
-		m_Scene.Load("orthogonal-outside.tmx");
+		char path[100];
+		GetPrivateProfileString("Map", "Path", "", path, sizeof(path) / sizeof(path[0]), file);
+
+		char map[100];
+		GetPrivateProfileString("Map", "Map", "", map, sizeof(map) / sizeof(map[0]), file);
+		std::string mapstring = path;
+		mapstring.append(map);
+		mapstring.append(".tmx");
+
+		std::cout << mapstring << std::endl;
+
+		m_Scene.Load(mapstring);
 
 		Run();
 	}
