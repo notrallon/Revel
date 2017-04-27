@@ -4,7 +4,11 @@
 #include <iostream>
 
 namespace rvl {
-	Scene::Scene() {
+	Scene::Scene(): m_Map(nullptr)
+	              , m_Height(0)
+	              , m_Width(0)
+	              , m_TileHeight(0)
+	              , m_TileWidth(0) {
 	}
 
 	Scene::~Scene() {
@@ -16,6 +20,18 @@ namespace rvl {
 	}
 	
 	void Scene::Update() {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
+			std::string file = m_Map->GetFilename();
+			
+			for (auto layer : m_SceneLayers) {
+				delete layer;
+			}
+			m_SceneLayers.clear();
+
+			delete m_Map;
+
+			Load(file);
+		}
 	}
 	
 	void Scene::Draw(sf::RenderWindow& window) {
@@ -25,9 +41,10 @@ namespace rvl {
 	}
 	
 	bool Scene::Load(std::string filePath) {
-		m_Map.ParseFile(filePath);
-		m_TileLayers = m_Map.GetTileLayers();
-		Tmx::Tileset* tmxTileset = *m_Map.GetTilesets().begin();
+		m_Map = new Tmx::Map();
+		m_Map->ParseFile(filePath);
+		//m_TileLayers = m_Map.GetTileLayers();
+		Tmx::Tileset* tmxTileset = *m_Map->GetTilesets().begin();
 
 		sf::Image image;
 
@@ -39,21 +56,20 @@ namespace rvl {
 		image.createMaskFromColor(sf::Color(255, 0, 255, 255));
 		m_Tileset.loadFromImage(image);
 
-		m_Height		= m_Map.GetHeight();
-		m_Width			= m_Map.GetWidth();
-		m_TileHeight	= m_Map.GetTileHeight();
-		m_TileWidth		= m_Map.GetTileWidth();
+		m_Height		= m_Map->GetHeight();
+		m_Width			= m_Map->GetWidth();
+		m_TileHeight	= m_Map->GetTileHeight();
+		m_TileWidth		= m_Map->GetTileWidth();
 
 		//m_Map.GetObjectGroup(0)->GetObject(0)->GetPolygon();
 
 
-		for (auto layer : m_Map.GetLayers()) {
+		for (auto layer : m_Map->GetLayers()) {
 			SceneLayer* currentLayer = CreateLayerFromTmx(layer);
 
 			if (currentLayer != nullptr) {
-				m_SceneLayers.push_back(CreateLayerFromTmx(layer));
+				m_SceneLayers.push_back(currentLayer);
 			}
-			std::cout << layer->GetParseOrder() << std::endl;
 		}
 
 		//for (auto tiles : m_TileLayers) {

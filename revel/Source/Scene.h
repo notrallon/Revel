@@ -34,10 +34,10 @@ namespace rvl {
 		typedef std::vector<sf::VertexArray*>	VertexArrayContainer;
 
 		//GameObjectContainer			m_GameObjects;
-		TileLayerContainer			m_TileLayers;
-		VertexArrayContainer		m_VertexLayers;
+		//TileLayerContainer			m_TileLayers;
+		//VertexArrayContainer		m_VertexLayers;
 		sf::Texture					m_Tileset;
-		Tmx::Map					m_Map;
+		Tmx::Map*					m_Map;
 
 		std::vector<SceneLayer*>	m_SceneLayers;
 

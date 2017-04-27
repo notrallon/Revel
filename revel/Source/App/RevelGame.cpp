@@ -84,7 +84,7 @@ namespace rvl {
 			if (timepassed - startTime > 0.25f && frames > 10) {
 				fps = frames / (timepassed - startTime);
 				startTime = timepassed;
-				std::cout << fps << std::endl;
+				//std::cout << fps << std::endl;
 				frames = 0;
 			}
 			// Add frames
@@ -122,6 +122,7 @@ namespace rvl {
 	}
 	
 	void RevelGame::Update() {
+		m_Scene.Update();
 	}
 
 	void RevelGame::LateUpdate() {

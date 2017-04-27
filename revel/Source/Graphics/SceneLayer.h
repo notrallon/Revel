@@ -6,14 +6,9 @@
 namespace rvl {
 class SceneLayer {
 public:
-	SceneLayer(/*Tmx::Layer* layer*/);
-	virtual ~SceneLayer() {
+					SceneLayer();
+	virtual			~SceneLayer() { }
 
-	}
-
-	virtual void Draw(sf::RenderWindow& window) = 0;
-
-protected:
-	//Tmx::Layer* m_Layer;
+	virtual void	Draw(sf::RenderWindow& window) = 0;
 };
 }
