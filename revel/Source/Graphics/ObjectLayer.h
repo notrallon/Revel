@@ -2,15 +2,19 @@
 
 #include "SceneLayer.h"
 #include "../Entity/GameObject.h"
+#include "../Common.h"
 
 #include <Tmx/TmxObjectGroup.h>
 
 namespace rvl {
 	class ObjectLayer : public SceneLayer {
 	public:
-		ObjectLayer(Tmx::ObjectGroup* layer);
+		ObjectLayer(Tmx::ObjectGroup* objectGroup, const sf::Texture& tileset);
+		~ObjectLayer();
+
+		virtual void Draw(sf::RenderWindow& window);
 
 	private:
-		std::vector<GameObject*> m_GameObjects;
+		std::vector<sf::Shape*> m_GameObjects;
 	};
 }

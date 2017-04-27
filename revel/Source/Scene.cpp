@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Graphics/VertexLayer.h"
+#include "Graphics/ObjectLayer.h"
 #include <iostream>
 
 namespace rvl {
@@ -7,19 +8,17 @@ namespace rvl {
 	}
 
 	Scene::~Scene() {
+		for (auto layer : m_SceneLayers) {
+			delete layer;
+		}
+
+		m_SceneLayers.clear();
 	}
 	
 	void Scene::Update() {
 	}
 	
 	void Scene::Draw(sf::RenderWindow& window) {
-		//sf::RenderStates states;
-		//states.texture = &m_Tileset;
-
-		//for (auto i : m_VertexLayers) {
-		//	window.draw(*i, states);
-		//}
-
 		for (auto layer : m_SceneLayers) {
 			layer->Draw(window);
 		}
@@ -109,18 +108,21 @@ namespace rvl {
 
 		return true;
 	}
+
 	SceneLayer* Scene::CreateLayerFromTmx(Tmx::Layer* layer) {
 		switch (layer->GetLayerType()) {
-		
-		case Tmx::LayerType::TMX_LAYERTYPE_TILE: {
-			return new VertexLayer(static_cast<Tmx::TileLayer*>(layer), m_TileWidth, m_TileHeight, m_Tileset);
-		} break;
+			case Tmx::LayerType::TMX_LAYERTYPE_TILE: {
+				return new VertexLayer(static_cast<Tmx::TileLayer*>(layer), m_TileWidth, m_TileHeight, m_Tileset);
+			} break;
 
-		default: {
-			assert("Could not find layertype");
-			return nullptr;
-		} break;
+			case Tmx::LayerType::TMX_LAYERTYPE_OBJECTGROUP: {
+				return new ObjectLayer(static_cast<Tmx::ObjectGroup*>(layer), m_Tileset);
+			}
 
+			default: {
+				std::cout << "Could not find layertype" << std::endl;
+				return nullptr;
+			} break;
 		}
 	}
 }

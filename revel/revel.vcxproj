@@ -144,6 +144,7 @@
     <ClCompile Include="Source\App\RevelGame.cpp" />
     <ClCompile Include="Source\Component\Component.cpp" />
     <ClCompile Include="Source\Entity\GameObject.cpp" />
+    <ClCompile Include="Source\Graphics\ObjectLayer.cpp" />
     <ClCompile Include="Source\Graphics\SceneLayer.cpp" />
     <ClCompile Include="Source\Graphics\VertexLayer.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
