@@ -1,4 +1,6 @@
 #pragma once
+#include "Entity/GameObject.h"
+#include "Graphics/SceneLayer.h"
 
 #include <Tmx/TmxMap.h>
 #include <Tmx/TmxObjectGroup.h>
@@ -13,7 +15,6 @@
 #include <cassert>
 #include <array>
 
-#include "Entity/GameObject.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -38,9 +39,13 @@ namespace rvl {
 		sf::Texture					m_Tileset;
 		Tmx::Map					m_Map;
 
+		std::vector<SceneLayer*>	m_SceneLayers;
+
 		int							m_Height;
 		int							m_Width;
 		int							m_TileHeight;
 		int							m_TileWidth;
+
+		SceneLayer*					CreateLayerFromTmx(Tmx::Layer* layer);
 	};
 }
