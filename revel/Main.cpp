@@ -4,6 +4,10 @@
  */
 
 #include "Source/App/RevelGame.h"
+#include <iostream>
+#include <Lua\lua.hpp>
+#include <LuaBridge\LuaBridge.h>
+
 
 #if _DEBUG
 int main() {
@@ -15,6 +19,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR lpCmdLin
 
 	rvl::RevelGame game;
 	game.Start();
-	
+
 	return EXIT_SUCCESS;
-}
+} 

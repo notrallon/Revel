@@ -1,0 +1,21 @@
+Classes that shouldn't be exposed to LuaScripts:
+	
+	Game
+		-MapManager m_MapManager
+		
+
+	Main
+		
+		
+	Map
+		Vector m_GameObjects
+		string name
+		int id
+		Vector m_Layers
+		Vector m_TileSets
+		Map(string path)
+		Draw()
+
+
+	ResourceManager
+		unordered_map Resources	
