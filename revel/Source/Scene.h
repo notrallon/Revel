@@ -48,5 +48,7 @@ namespace rvl {
 		int							m_TileWidth;
 
 		SceneLayer*					CreateLayerFromTmx(Tmx::Layer* layer);
+
+		void						Purge();
 	};
 }

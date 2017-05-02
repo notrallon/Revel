@@ -1,21 +1,25 @@
 #include "Vertexlayer.h"
 
 #include <array>
+#include <iostream>
+#include <Tmx\TmxMap.h>
 
 namespace rvl {
-	VertexLayer::VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tilesets) : m_VertexArray(nullptr), m_Tilesets(tilesets) {
+	VertexLayer::VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tilesets) : /*m_VertexArray(nullptr),*/ m_Tilesets(tilesets) {
 		int width, height;
 		width = layer->GetWidth();
 		height = layer->GetHeight();
-		m_VertexArray = new sf::VertexArray(sf::Quads, layer->GetHeight() * layer->GetWidth() * 4);
 
-		for (auto tileset : tilesets) {
+		for (uint32_t t = 0; t < tilesets.size(); t++) {
+			sf::VertexArray* m_VertexArray = new sf::VertexArray(sf::Quads, layer->GetHeight() * layer->GetWidth() * 4);
+			m_VertexArrays.push_back(m_VertexArray);
 			for (size_t i = 0; i < height; ++i) {
 				for (size_t j = 0; j < width; ++j) {
 					// Get the tile, and check if it's part of a tileset
 					const Tmx::MapTile tile = layer->GetTile(j, i);
-					if (tile.tilesetId == -1)
+					if (tile.tilesetId == -1 || tile.tilesetId != t)
 						continue;
+					
 
 					// Get the currect vertexlayer
 					//sf::VertexArray* vertexLayer = *(m_VertexLayers.end() - 1);
@@ -24,14 +28,8 @@ namespace rvl {
 
 					// Calculate texture coordinates, based on the tilenumer
 					unsigned int tileNumber = tile.id;
-					int tu = tileNumber % (tileset->getSize().x / tileWidth);
-					int tv = tileNumber / (tileset->getSize().x / tileWidth);
-
-					//layer->
-					// 
-					/*while (tv > tileset->getSize().y / tileHeight) {
-						tv -= tileset->getSize().y / tileHeight;
-					}*/
+					int tu = tileNumber % (tilesets[t]->getSize().x / tileWidth);
+					int tv = tileNumber / (tilesets[t]->getSize().x / tileWidth);
 
 					/*
 					The form that we align the vertices in to build our quads
@@ -64,14 +62,17 @@ namespace rvl {
 	}
 	
 	VertexLayer::~VertexLayer() {
-		delete m_VertexArray;
+		for (auto vertexLayer : m_VertexArrays) {
+			delete vertexLayer;
+		}
+		m_VertexArrays.clear();
 	}
 
 	void VertexLayer::Draw(sf::RenderWindow& window) {
+		sf::RenderStates states;
 		for (uint32_t i = 0; i < m_Tilesets.size(); i++) {
-			sf::RenderStates states;
 			states.texture = m_Tilesets[i];
-			window.draw(*m_VertexArray, states);
+			window.draw(*m_VertexArrays[i], states);
 		}
 	}
 }

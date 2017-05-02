@@ -13,7 +13,7 @@ namespace rvl {
 		void							Draw(sf::RenderWindow& window) override;
 
 	private:
-		sf::VertexArray*				m_VertexArray;
+		std::vector<sf::VertexArray*>	m_VertexArrays;
 		std::vector<sf::Texture*>&		m_Tilesets;
 	};
 }
