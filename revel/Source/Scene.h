@@ -36,7 +36,8 @@ namespace rvl {
 		//GameObjectContainer			m_GameObjects;
 		//TileLayerContainer			m_TileLayers;
 		//VertexArrayContainer		m_VertexLayers;
-		sf::Texture					m_Tileset;
+		std::vector<sf::Texture*>   m_Tilesets;
+		//sf::Texture					m_Tileset;
 		Tmx::Map*					m_Map;
 
 		std::vector<SceneLayer*>	m_SceneLayers;
@@ -47,5 +48,7 @@ namespace rvl {
 		int							m_TileWidth;
 
 		SceneLayer*					CreateLayerFromTmx(Tmx::Layer* layer);
+
+		void						Purge();
 	};
 }

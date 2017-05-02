@@ -9,7 +9,7 @@
 namespace rvl {
 	class ObjectLayer : public SceneLayer {
 	public:
-									ObjectLayer(Tmx::ObjectGroup* objectGroup, const sf::Texture& tileset);
+									ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets);
 									~ObjectLayer() override;
 
 		virtual void				Draw(sf::RenderWindow& window);
