@@ -1,11 +1,13 @@
 #include "ObjectLayer.h"
 #include <iostream>
+#include <Tmx/TmxMap.h>
+#include <Tmx/TmxTileset.h>
 #include <Tmx/TmxObject.h>
 #include <Tmx/TmxPolygon.h>
 #include <Tmx/TmxPolyline.h>
 
 namespace rvl {
-	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const sf::Texture& tileset): m_Player(nullptr) {
+	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets): m_Player(nullptr) {
 		for (auto object : objectGroup->GetObjects()) {
 			if (object->GetEllipse() != 0) {
 				sf::CircleShape* circle = new sf::CircleShape(object->GetWidth() / 2);
@@ -37,10 +39,12 @@ namespace rvl {
 				rect->setPosition(object->GetX(), object->GetY());
 
 				if (object->GetGid() != 0) {
-					rect->setTexture(&tileset);
-					rect->setOrigin(0, 16);
-					int tu = (object->GetGid() - 1) % (tileset.getSize().x / 16);
-					int tv = (object->GetGid() - 1) / (tileset.getSize().x / 16);
+					int tilesetIndex = objectGroup->mapGetMap()->FindTilesetIndex(object->GetGid());
+					int firstGid = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex]->GetFirstGid();
+					rect->setTexture(tilesets[tilesetIndex]);
+					rect->setOrigin(0, rect->getSize().y);
+					int tu = (object->GetGid() - firstGid) % (tilesets[tilesetIndex]->getSize().x / 16);
+					int tv = (object->GetGid() - firstGid) / (tilesets[tilesetIndex]->getSize().x / 16);
 
 					//std::cout << "Object ID: " << object->GetId() << "tu: " << tu << " tv: " << tv << std::endl;
 
@@ -72,7 +76,7 @@ namespace rvl {
 
 	void ObjectLayer::Draw(sf::RenderWindow& window) {
 		m_Player->setPosition(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-		std::sort(m_GameObjects.begin(), m_GameObjects.end(), ObjectSort);
+		std::sort(m_GameObjects.begin(), m_GameObjects.end(), [](const sf::Shape* A, const sf::Shape* B) { return A->getPosition().y < B->getPosition().y; });
 
 		for (auto object : m_GameObjects) {
 			window.draw(*object);

@@ -44,17 +44,24 @@ namespace rvl {
 		m_Map = new Tmx::Map();
 		m_Map->ParseFile(filePath);
 		//m_TileLayers = m_Map.GetTileLayers();
-		Tmx::Tileset* tmxTileset = *m_Map->GetTilesets().begin();
+		//Tmx::Tileset* tmxTileset = *m_Map->GetTilesets().begin();
+		std::vector<Tmx::Tileset*> tmxTilesets = m_Map->GetTilesets();
 
-		sf::Image image;
+		for (uint32 i = 0; i < tmxTilesets.size(); i++) {
+			sf::Image image;
 
-		if (!image.loadFromFile(tmxTileset->GetImage()->GetSource())) {
-			assert("Could not load tileset");
-			return false;
+			if (!image.loadFromFile(tmxTilesets[i]->GetImage()->GetSource())) {
+				assert("Could not load tileset");
+				return false;
+			}
+
+			image.createMaskFromColor(sf::Color(255, 0, 255, 255));
+
+			sf::Texture* tileset = new sf::Texture();
+			tileset->loadFromImage(image);
+
+			m_Tilesets.push_back(tileset);
 		}
-
-		image.createMaskFromColor(sf::Color(255, 0, 255, 255));
-		m_Tileset.loadFromImage(image);
 
 		m_Height		= m_Map->GetHeight();
 		m_Width			= m_Map->GetWidth();
@@ -128,12 +135,12 @@ namespace rvl {
 	SceneLayer* Scene::CreateLayerFromTmx(Tmx::Layer* layer) {
 		switch (layer->GetLayerType()) {
 			case Tmx::LayerType::TMX_LAYERTYPE_TILE: {
-				return new VertexLayer(static_cast<Tmx::TileLayer*>(layer), m_TileWidth, m_TileHeight, m_Tileset);
+				return new VertexLayer(static_cast<Tmx::TileLayer*>(layer), m_TileWidth, m_TileHeight, m_Tilesets);
 			} break;
 
 			case Tmx::LayerType::TMX_LAYERTYPE_OBJECTGROUP: {
-				return new ObjectLayer(static_cast<Tmx::ObjectGroup*>(layer), m_Tileset);
-			}
+				return new ObjectLayer(static_cast<Tmx::ObjectGroup*>(layer), m_Tilesets);
+			} break;
 
 			default: {
 				std::cout << "Could not find layertype" << std::endl;
