@@ -159,6 +159,7 @@
     <ClInclude Include="Source\Component\Component.h" />
     <ClInclude Include="Source\Entity\Entity.h" />
     <ClInclude Include="Source\Entity\GameObject.h" />
+    <ClInclude Include="Source\Graphics\ImageLayer.h" />
     <ClInclude Include="Source\Graphics\ObjectLayer.h" />
     <ClInclude Include="Source\Graphics\SceneLayer.h" />
     <ClInclude Include="Source\Graphics\VertexLayer.h" />

@@ -40,8 +40,10 @@ namespace rvl {
 				rect->setPosition(object->GetX(), object->GetY());
 
 				if (object->GetGid() != 0) {
+					// For some reason: objectGroup->mapGetMap()->FindTileset(object->GetGid()) doesn't
+					// work, so we have to first get the tileset index in order to get the tileset
 					int tilesetIndex = objectGroup->mapGetMap()->FindTilesetIndex(object->GetGid());
-					int tileSize = 16;
+					int tileSize = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex]->GetTileHeight();
 					int firstGid = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex]->GetFirstGid();
 					rect->setTexture(tilesets[tilesetIndex]);
 					rect->setOrigin(0, rect->getSize().y);
@@ -53,9 +55,10 @@ namespace rvl {
 					rect->setFillColor(sf::Color(0, 0, 255, 125));
 				}
 
+				// We grab the player just so we can use it for debugging atm
 				if (object->GetName() == "player-start") {
 					m_Player = rect;
-					rect->setOrigin(0, 16);
+					rect->setOrigin(0, rect->getSize().y);
 				}
 
 				m_GameObjects.push_back(rect);
@@ -70,14 +73,11 @@ namespace rvl {
 		m_GameObjects.clear();
 	}
 
-	bool ObjectSort(const sf::Shape* A, const sf::Shape* B) {
-		return A->getPosition().y < B->getPosition().y;
-	}
-
 	void ObjectLayer::Draw(sf::RenderWindow& window) {
 		if (m_Player != nullptr) {
-			m_Player->setPosition(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+			m_Player->setPosition(window.mapPixelToCoords(sf::Mouse::getPosition(), window.getView()));
 		}
+
 		std::sort(m_GameObjects.begin(), m_GameObjects.end(), [](const sf::Shape* A, const sf::Shape* B) { return A->getPosition().y < B->getPosition().y; });
 
 		for (auto object : m_GameObjects) {
