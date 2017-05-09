@@ -81,10 +81,10 @@ namespace rvl {
 			// Add deltatime to our timepassed variable
 			timepassed += m_Time.UnScaledDeltaTime();
 			// Calculate fps
-			if (timepassed - startTime > 0.25f && frames > 10) {
+			if (timepassed - startTime > 1 && frames > 10) {
 				fps = frames / (timepassed - startTime);
 				startTime = timepassed;
-				//std::cout << fps << std::endl;
+				std::cout << "FPS: " << fps << std::endl;
 				frames = 0;
 			}
 			// Add frames
