@@ -18,8 +18,9 @@ namespace rvl {
 				for (size_t j = 0; j < width; ++j) {
 					// Get the tile, and check if it's part of a tileset
 					const Tmx::MapTile tile = layer->GetTile(j, i);
-					if (tile.tilesetId == -1 || tile.tilesetId != t)
+					if (tile.tilesetId == -1 || tile.tilesetId != t) {
 						continue;
+					}
 					
 
 					// Get the currect vertexlayer
@@ -29,11 +30,23 @@ namespace rvl {
 
 					// Calculate texture coordinates, based on the tilenumer
 					unsigned int tileNumber = tile.id;
+
+					// Some tilesets might not have the same tilesetWidth/height as the map itself
+					// so we get the width/height for those tilesets so that we can position and scale
+					// them correctly.
 					int tileSetTileWidth = layer->mapGetMap()->GetTilesets()[t]->GetTileWidth();
 					int tileSetTileHeight = layer->mapGetMap()->GetTilesets()[t]->GetTileHeight();
+					
 					int tileYPosOffset = tileSetTileHeight - tileHeight; // we have to offset the Y position to compensate for tilesets that got different tile sizes for some reason
+					
+					// I don't know what to call these, but they're  whats setting the
+					// size of the tile in the map.
 					int tiledWidthMultiplicator = tileSetTileWidth / tileWidth;
 					int tiledHeightMultiplicator = tileSetTileHeight / tileHeight;
+
+					// Some tilesets have a margin and spacing, so we have to get those values aswell
+					int margin = layer->mapGetMap()->GetTilesets()[t]->GetMargin();
+					int spacing = layer->mapGetMap()->GetTilesets()[t]->GetSpacing();
 
 					int tu = tileNumber % (tilesets[t]->getSize().x / tileSetTileWidth);
 					int tv = tileNumber / (tilesets[t]->getSize().x / tileSetTileWidth);
@@ -46,32 +59,6 @@ namespace rvl {
 					3 --- 2
 					*/
 
-					/*
-					Horizontal
-					1 --- 0
-					|     |
-					|     |
-					2 --- 3
-					*/
-
-
-					/*
-					Vertical
-					3 --- 2
-					|     |
-					|     |
-					0 --- 1
-					*/
-
-
-					/*
-					Horizontal & vertical / Diagonal
-					2 --- 3
-					|     |
-					|     |
-					1 --- 0
-					*/
-
 					// Position the vertices, as specified above
 					quad[0].position = sf::Vector2f( j * tileWidth, i * tileHeight - tileYPosOffset);
 					quad[1].position = sf::Vector2f((j + tiledWidthMultiplicator) * tileWidth, i * tileHeight - tileYPosOffset);
@@ -82,18 +69,39 @@ namespace rvl {
 					std::array<size_t, 4> texOrder = { 0, 1, 2, 3 };
 					// Different order if the tile is flipped horizontally
 					if (tile.flippedVertically && tile.flippedHorizontally) {
+						/*
+						Horizontal & vertical / Diagonal
+						2 --- 3
+						|     |
+						|     |
+						1 --- 0
+						*/
 						texOrder = { 2, 3, 0, 1 };
 					} else if (tile.flippedHorizontally) {
+						/*
+						Horizontal
+						1 --- 0
+						|     |
+						|     |
+						2 --- 3
+						*/
 						texOrder = { 1, 0, 3, 2 };
 					} else if (tile.flippedVertically) {
+						/*
+						Vertical
+						3 --- 2
+						|     |
+						|     |
+						0 --- 1
+						*/
 						texOrder = { 3, 2, 1, 0 };
 					}
 
 					// Position the texture coordinates. Coordinates is specified in pixels, not 0-1
-					quad[texOrder[0]].texCoords = sf::Vector2f(tu * tileSetTileWidth, tv * tileSetTileHeight);
-					quad[texOrder[1]].texCoords = sf::Vector2f((tu + 1) * tileSetTileWidth, tv * tileSetTileHeight);
-					quad[texOrder[2]].texCoords = sf::Vector2f((tu + 1) * tileSetTileWidth, (tv + 1) * tileSetTileHeight);
-					quad[texOrder[3]].texCoords = sf::Vector2f(tu * tileSetTileWidth, (tv + 1) * tileSetTileHeight);
+					quad[texOrder[0]].texCoords = sf::Vector2f(tu * (tileSetTileWidth + spacing) + margin, tv * (tileSetTileHeight + spacing) + margin);
+					quad[texOrder[1]].texCoords = sf::Vector2f((tu + 1) * (tileSetTileWidth + spacing) + margin, tv * (tileSetTileHeight + spacing) + margin);
+					quad[texOrder[2]].texCoords = sf::Vector2f((tu + 1) * (tileSetTileWidth + spacing) + margin, (tv + 1) * (tileSetTileHeight + spacing) + margin);
+					quad[texOrder[3]].texCoords = sf::Vector2f(tu * (tileSetTileWidth + spacing) + margin, (tv + 1) * (tileSetTileHeight + spacing) + margin);
 				}
 			}
 		}
