@@ -36,6 +36,8 @@ namespace rvl {
 		m_Map = new Tmx::Map();
 		m_Map->ParseFile(filePath);
 
+		std::string folderPath = filePath.substr(0, filePath.find_last_of("/\\"));
+
 		std::vector<Tmx::Tileset*> tmxTilesets = m_Map->GetTilesets();
 
 		// Loop through all tilesets in the map
@@ -43,7 +45,7 @@ namespace rvl {
 			sf::Image image;
 
 			// Load image from filepath
-			if (!image.loadFromFile(tmxTilesets[i]->GetImage()->GetSource())) {
+			if (!image.loadFromFile(folderPath + "/" + tmxTilesets[i]->GetImage()->GetSource())) {
 				assert("Could not load tileset");
 				return false;
 			}
