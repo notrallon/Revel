@@ -82,7 +82,11 @@ namespace rvl {
 			m_Player->setPosition(window.mapPixelToCoords(sf::Mouse::getPosition(), window.getView()));
 		}
 
-		std::sort(m_GameObjects.begin(), m_GameObjects.end(), SortObjects);
+		std::sort(m_GameObjects.begin(), 
+				  m_GameObjects.end(), 
+				  [](const sf::Shape* A, const sf::Shape* B) { 
+						return A->getPosition().y < B->getPosition().y; 
+				  });
 
 		for (auto object : m_GameObjects) {
 			window.draw(*object);

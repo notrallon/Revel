@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Common.h"
 #include "SceneLayer.h"
 
 #include <Tmx/TmxTileLayer.h>

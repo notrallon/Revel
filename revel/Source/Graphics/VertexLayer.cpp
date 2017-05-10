@@ -6,14 +6,14 @@
 #include <Tmx/TmxTileset.h>
 
 namespace rvl {
-	VertexLayer::VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tilesets) : /*m_VertexArray(nullptr),*/ m_Tilesets(tilesets) {
+	VertexLayer::VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tilesets) : m_Tilesets(tilesets) {
 		int width, height;
 		width = layer->GetWidth();
 		height = layer->GetHeight();
 
 		for (uint32_t t = 0; t < tilesets.size(); t++) {
-			sf::VertexArray* m_VertexArray = new sf::VertexArray(sf::Quads, layer->GetHeight() * layer->GetWidth() * 4);
-			m_VertexArrays.push_back(m_VertexArray);
+			sf::VertexArray* vertexArray = new sf::VertexArray(sf::Quads, height * width * 4);
+			m_VertexArrays.push_back(vertexArray);
 			for (size_t i = 0; i < height; ++i) {
 				for (size_t j = 0; j < width; ++j) {
 					// Get the tile, and check if it's part of a tileset
@@ -26,30 +26,30 @@ namespace rvl {
 					// Get the currect vertexlayer
 					//sf::VertexArray* vertexLayer = *(m_VertexLayers.end() - 1);
 					// Get the current quad
-					sf::Vertex* quad = &(*m_VertexArray)[(i * width + j) * 4];
-
-					// Calculate texture coordinates, based on the tilenumer
-					unsigned int tileNumber = tile.id;
+					sf::Vertex* quad = &(*vertexArray)[(i * width + j) * 4];
 
 					// Some tilesets might not have the same tilesetWidth/height as the map itself
 					// so we get the width/height for those tilesets so that we can position and scale
 					// them correctly.
-					int tileSetTileWidth = layer->mapGetMap()->GetTilesets()[t]->GetTileWidth();
-					int tileSetTileHeight = layer->mapGetMap()->GetTilesets()[t]->GetTileHeight();
+					int32 tileSetTileWidth = layer->mapGetMap()->GetTilesets()[t]->GetTileWidth();
+					int32 tileSetTileHeight = layer->mapGetMap()->GetTilesets()[t]->GetTileHeight();
 					
-					int tileYPosOffset = tileSetTileHeight - tileHeight; // we have to offset the Y position to compensate for tilesets that got different tile sizes for some reason
+					int32 tileYPosOffset = tileSetTileHeight - tileHeight; // we have to offset the Y position to compensate for tilesets that got different tile sizes for some reason
 					
 					// I don't know what to call these, but they're  whats setting the
 					// size of the tile in the map.
-					int tiledWidthMultiplicator = tileSetTileWidth / tileWidth;
-					int tiledHeightMultiplicator = tileSetTileHeight / tileHeight;
+					int32 tiledWidthMultiplicator = tileSetTileWidth / tileWidth;
+					int32 tiledHeightMultiplicator = tileSetTileHeight / tileHeight;
 
 					// Some tilesets have a margin and spacing, so we have to get those values aswell
-					int margin = layer->mapGetMap()->GetTilesets()[t]->GetMargin();
-					int spacing = layer->mapGetMap()->GetTilesets()[t]->GetSpacing();
+					int32 margin = layer->mapGetMap()->GetTilesets()[t]->GetMargin();
+					int32 spacing = layer->mapGetMap()->GetTilesets()[t]->GetSpacing();
 
-					int tu = tileNumber % (tilesets[t]->getSize().x / tileSetTileWidth);
-					int tv = tileNumber / (tilesets[t]->getSize().x / tileSetTileWidth);
+					// Calculate texture coordinates, based on the tilenumer
+					uint32 tileNumber = tile.id;
+
+					int32 tu = tileNumber % (tilesets[t]->getSize().x / tileSetTileWidth);
+					int32 tv = tileNumber / (tilesets[t]->getSize().x / tileSetTileWidth);
 
 					/*
 					The form that we align the vertices in to build our quads
@@ -116,7 +116,7 @@ namespace rvl {
 
 	void VertexLayer::Draw(sf::RenderWindow& window) {
 		sf::RenderStates states;
-		for (uint32_t i = 0; i < m_Tilesets.size(); i++) {
+		for (uint32 i = 0; i < m_Tilesets.size(); i++) {
 			states.texture = m_Tilesets[i];
 			window.draw(*m_VertexArrays[i], states);
 		}
