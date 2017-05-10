@@ -4,7 +4,7 @@
 
 #define RVL_VERSION_MAJOR "0"
 #define RVL_VERSION_MINOR "0"
-#define RVL_VERSION_PATCH "5"
+#define RVL_VERSION_PATCH "6"
 
 namespace rvl {
 
