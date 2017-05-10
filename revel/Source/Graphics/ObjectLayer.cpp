@@ -73,12 +73,16 @@ namespace rvl {
 		m_GameObjects.clear();
 	}
 
+	bool SortObjects(const sf::Shape* A, const sf::Shape* B) {
+		return A->getPosition().y < B->getPosition().y;
+	}
+
 	void ObjectLayer::Draw(sf::RenderWindow& window) {
 		if (m_Player != nullptr) {
 			m_Player->setPosition(window.mapPixelToCoords(sf::Mouse::getPosition(), window.getView()));
 		}
 
-		std::sort(m_GameObjects.begin(), m_GameObjects.end(), [](const sf::Shape* A, const sf::Shape* B) { return A->getPosition().y < B->getPosition().y; });
+		std::sort(m_GameObjects.begin(), m_GameObjects.end(), SortObjects);
 
 		for (auto object : m_GameObjects) {
 			window.draw(*object);
