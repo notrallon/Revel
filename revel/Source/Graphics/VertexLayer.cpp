@@ -22,7 +22,6 @@ namespace rvl {
 						continue;
 					}
 					
-
 					// Get the currect vertexlayer
 					//sf::VertexArray* vertexLayer = *(m_VertexLayers.end() - 1);
 					// Get the current quad
@@ -48,8 +47,8 @@ namespace rvl {
 					// Calculate texture coordinates, based on the tilenumer
 					uint32 tileNumber = tile.id;
 
-					int32 tu = tileNumber % (tilesets[t]->getSize().x / tileSetTileWidth);
-					int32 tv = tileNumber / (tilesets[t]->getSize().x / tileSetTileWidth);
+					int32 tu = tileNumber % ((tilesets[t]->getSize().x - margin) / (tileSetTileWidth + spacing));
+					int32 tv = tileNumber / ((tilesets[t]->getSize().x - margin) / (tileSetTileWidth + spacing));
 
 					/*
 					The form that we align the vertices in to build our quads
@@ -58,6 +57,7 @@ namespace rvl {
 					|     |
 					3 --- 2
 					*/
+
 
 					// Position the vertices, as specified above
 					quad[0].position = sf::Vector2f( j * tileWidth, i * tileHeight - tileYPosOffset);
@@ -97,11 +97,24 @@ namespace rvl {
 						texOrder = { 3, 2, 1, 0 };
 					}
 
-					// Position the texture coordinates. Coordinates is specified in pixels, not 0-1
-					quad[texOrder[0]].texCoords = sf::Vector2f(tu * (tileSetTileWidth + spacing) + margin, tv * (tileSetTileHeight + spacing) + margin);
-					quad[texOrder[1]].texCoords = sf::Vector2f((tu + 1) * (tileSetTileWidth + spacing) + margin, tv * (tileSetTileHeight + spacing) + margin);
-					quad[texOrder[2]].texCoords = sf::Vector2f((tu + 1) * (tileSetTileWidth + spacing) + margin, (tv + 1) * (tileSetTileHeight + spacing) + margin);
-					quad[texOrder[3]].texCoords = sf::Vector2f(tu * (tileSetTileWidth + spacing) + margin, (tv + 1) * (tileSetTileHeight + spacing) + margin);
+					/*// Position the texture coordinates. Coordinates is specified in pixels, not 0-1
+					quad[texOrder[0]].texCoords = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + tv * (tileSetTileHeight + spacing));
+					quad[texOrder[1]].texCoords = sf::Vector2f(margin + (tu + 1) * (tileSetTileWidth), margin + tv * (tileSetTileHeight + spacing));
+					quad[texOrder[2]].texCoords = sf::Vector2f(margin + (tu + 1) * (tileSetTileWidth), margin + (tv + 1) * (tileSetTileHeight));
+					quad[texOrder[3]].texCoords = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + (tv + 1) * (tileSetTileHeight));*/
+
+					/*
+					The form that we align the vertices in to build our quads
+					0 --- 1
+					|     |
+					|     |
+					3 --- 2
+					*/
+					sf::Vector2f topLeft = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + tv * (tileSetTileHeight + spacing));
+					quad[texOrder[0]].texCoords = topLeft;
+					quad[texOrder[1]].texCoords = sf::Vector2f(topLeft.x + tileSetTileWidth, topLeft.y);
+					quad[texOrder[2]].texCoords = sf::Vector2f(topLeft.x + tileSetTileWidth, topLeft.y + tileSetTileHeight);
+					quad[texOrder[3]].texCoords = sf::Vector2f(topLeft.x, topLeft.y + tileSetTileHeight);
 				}
 			}
 		}
