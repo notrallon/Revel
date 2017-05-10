@@ -58,7 +58,6 @@ namespace rvl {
 					3 --- 2
 					*/
 
-
 					// Position the vertices, as specified above
 					quad[0].position = sf::Vector2f( j * tileWidth, i * tileHeight - tileYPosOffset);
 					quad[1].position = sf::Vector2f((j + tiledWidthMultiplicator) * tileWidth, i * tileHeight - tileYPosOffset);
@@ -103,14 +102,8 @@ namespace rvl {
 					quad[texOrder[2]].texCoords = sf::Vector2f(margin + (tu + 1) * (tileSetTileWidth), margin + (tv + 1) * (tileSetTileHeight));
 					quad[texOrder[3]].texCoords = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + (tv + 1) * (tileSetTileHeight));*/
 
-					/*
-					The form that we align the vertices in to build our quads
-					0 --- 1
-					|     |
-					|     |
-					3 --- 2
-					*/
-					sf::Vector2f topLeft = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + tv * (tileSetTileHeight + spacing));
+					sf::Vector2f topLeft = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), 
+														margin + tv * (tileSetTileHeight + spacing));
 					quad[texOrder[0]].texCoords = topLeft;
 					quad[texOrder[1]].texCoords = sf::Vector2f(topLeft.x + tileSetTileWidth, topLeft.y);
 					quad[texOrder[2]].texCoords = sf::Vector2f(topLeft.x + tileSetTileWidth, topLeft.y + tileSetTileHeight);
