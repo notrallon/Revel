@@ -2,14 +2,16 @@
 
 #include <array>
 #include <iostream>
-#include <Tmx\TmxMap.h>
+#include <Tmx/TmxMap.h>
 #include <Tmx/TmxTileset.h>
 
 namespace rvl {
-	VertexLayer::VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tilesets) : m_Tilesets(tilesets) {
+	VertexLayer::VertexLayer(Tmx::TileLayer* layer, int mapTileWidth, int mapTileHeight, std::vector<sf::Texture*>& tilesets) : m_Tilesets(tilesets) {
 		int width, height;
 		width = layer->GetWidth();
 		height = layer->GetHeight();
+
+		const Tmx::Map* tmxMap = layer->mapGetMap();
 
 		for (uint32_t t = 0; t < tilesets.size(); t++) {
 			sf::VertexArray* vertexArray = new sf::VertexArray(sf::Quads, height * width * 4);
@@ -21,34 +23,37 @@ namespace rvl {
 					if (tile.tilesetId == -1 || tile.tilesetId != t) {
 						continue;
 					}
-					
-					// Get the currect vertexlayer
-					//sf::VertexArray* vertexLayer = *(m_VertexLayers.end() - 1);
+
 					// Get the current quad
 					sf::Vertex* quad = &(*vertexArray)[(i * width + j) * 4];
 
 					// Some tilesets might not have the same tilesetWidth/height as the map itself
 					// so we get the width/height for those tilesets so that we can position and scale
 					// them correctly.
-					int32 tileSetTileWidth = layer->mapGetMap()->GetTilesets()[t]->GetTileWidth();
-					int32 tileSetTileHeight = layer->mapGetMap()->GetTilesets()[t]->GetTileHeight();
-					
-					int32 tileYPosOffset = tileSetTileHeight - tileHeight; // we have to offset the Y position to compensate for tilesets that got different tile sizes for some reason
+					int32 tileSetTileWidth	= tmxMap->GetTilesets()[t]->GetTileWidth();
+					int32 tileSetTileHeight = tmxMap->GetTilesets()[t]->GetTileHeight();
 					
 					// I don't know what to call these, but they're  whats setting the
-					// size of the tile in the map.
-					int32 tiledWidthMultiplicator = tileSetTileWidth / tileWidth;
-					int32 tiledHeightMultiplicator = tileSetTileHeight / tileHeight;
+					// size of the tile in the map. To get the value we devide the tilesets
+					// tilewidth/tileheight with the maps tilewidth/tileheight
+					int32 tiledWidthScale	= tileSetTileWidth / mapTileWidth;
+					int32 tiledHeightScale	= tileSetTileHeight / mapTileHeight;
 
 					// Some tilesets have a margin and spacing, so we have to get those values aswell
-					int32 margin = layer->mapGetMap()->GetTilesets()[t]->GetMargin();
-					int32 spacing = layer->mapGetMap()->GetTilesets()[t]->GetSpacing();
+					int32 margin	= tmxMap->GetTilesets()[t]->GetMargin();
+					int32 spacing	= tmxMap->GetTilesets()[t]->GetSpacing();
 
 					// Calculate texture coordinates, based on the tilenumer
 					uint32 tileNumber = tile.id;
 
 					int32 tu = tileNumber % ((tilesets[t]->getSize().x - margin) / (tileSetTileWidth + spacing));
 					int32 tv = tileNumber / ((tilesets[t]->getSize().x - margin) / (tileSetTileWidth + spacing));
+
+					// We have to offset the Y position to compensate for tilesets that got different tile 
+					// sizes because tilesets with tilesizes larger than the maps tilesize are placed
+					// with their origin in the bottom left. We do this by subtracting the maps tileheight
+					// from the tilesets tileheight.
+					int32 tileYPosOffset = tileSetTileHeight - mapTileHeight;
 
 					/*
 					The form that we align the vertices in to build our quads
@@ -57,12 +62,18 @@ namespace rvl {
 					|     |
 					3 --- 2
 					*/
-
 					// Position the vertices, as specified above
-					quad[0].position = sf::Vector2f( j * tileWidth, i * tileHeight - tileYPosOffset);
-					quad[1].position = sf::Vector2f((j + tiledWidthMultiplicator) * tileWidth, i * tileHeight - tileYPosOffset);
-					quad[2].position = sf::Vector2f((j + tiledWidthMultiplicator) * tileWidth, (i + tiledHeightMultiplicator) * tileHeight - tileYPosOffset);
-					quad[3].position = sf::Vector2f( j * tileWidth, (i + tiledHeightMultiplicator) * tileHeight - tileYPosOffset);
+
+					quad[0].position = sf::Vector2f( j * mapTileWidth, i * mapTileHeight - tileYPosOffset);
+					quad[1].position = sf::Vector2f((j + tiledWidthScale) * mapTileWidth, i * mapTileHeight - tileYPosOffset);
+					quad[2].position = sf::Vector2f((j + tiledWidthScale) * mapTileWidth, (i + tiledHeightScale) * mapTileHeight - tileYPosOffset);
+					quad[3].position = sf::Vector2f( j * mapTileWidth,	(i + tiledHeightScale) * mapTileHeight - tileYPosOffset);
+
+					quad[0].position = sf::Vector2f( j * mapTileWidth, i * mapTileHeight);
+					quad[1].position = sf::Vector2f((j + 1) * mapTileWidth, i * mapTileHeight);
+					quad[2].position = sf::Vector2f((j + 1) * mapTileWidth, (i + 1) * mapTileHeight);
+					quad[3].position = sf::Vector2f( j * mapTileWidth, (i + 1) * mapTileHeight);
+
 
 					// The default order to specify texture coordinates by.
 					std::array<size_t, 4> texOrder = { 0, 1, 2, 3 };
@@ -96,14 +107,9 @@ namespace rvl {
 						texOrder = { 3, 2, 1, 0 };
 					}
 
-					/*// Position the texture coordinates. Coordinates is specified in pixels, not 0-1
-					quad[texOrder[0]].texCoords = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + tv * (tileSetTileHeight + spacing));
-					quad[texOrder[1]].texCoords = sf::Vector2f(margin + (tu + 1) * (tileSetTileWidth), margin + tv * (tileSetTileHeight + spacing));
-					quad[texOrder[2]].texCoords = sf::Vector2f(margin + (tu + 1) * (tileSetTileWidth), margin + (tv + 1) * (tileSetTileHeight));
-					quad[texOrder[3]].texCoords = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), margin + (tv + 1) * (tileSetTileHeight));*/
-
 					sf::Vector2f topLeft = sf::Vector2f(margin + tu * (tileSetTileWidth + spacing), 
 														margin + tv * (tileSetTileHeight + spacing));
+
 					quad[texOrder[0]].texCoords = topLeft;
 					quad[texOrder[1]].texCoords = sf::Vector2f(topLeft.x + tileSetTileWidth, topLeft.y);
 					quad[texOrder[2]].texCoords = sf::Vector2f(topLeft.x + tileSetTileWidth, topLeft.y + tileSetTileHeight);
