@@ -1,16 +1,28 @@
 #pragma once
 
-#include "../Common.h"
+#include "SharedContext.h"
+#include "Common.h"
 #include "SceneLayer.h"
 
 #include <Tmx/TmxTileLayer.h>
 
 namespace rvl {
+	/////////////////////////////////////
+	/// \brief VertexLayer
+	///
+	/// VertexLayer is responsible for drawing out a Tmx::TileLayer
+	/////////////////////////////////////
 	class VertexLayer : public SceneLayer {
 	public:
 										VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tileset);
 										~VertexLayer() override;
 
+
+		/////////////////////////////////////
+		/// \brief Draw
+		///
+		/// Draws all the VertexArrays to a specified sf::RenderWindow
+		/////////////////////////////////////
 		void							Draw(sf::RenderWindow& window) override;
 
 	private:

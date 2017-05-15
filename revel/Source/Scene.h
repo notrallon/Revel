@@ -11,33 +11,47 @@
 #include <Tmx/TmxTile.h>
 #include <Tmx/TmxMapTile.h>
 
-// Include part of the standard library
 #include <cassert>
 #include <array>
-
 
 #include <SFML/Graphics.hpp>
 
 namespace rvl {
+	/////////////////////////////////////
+	/// \brief Scene
+	///
+	/// Scene handles a .tmx map
+	/////////////////////////////////////
 	class Scene {
 	public:
 									Scene();
 									~Scene();
 
+		/////////////////////////////////////
+		/// \brief void Update()
+		///
+		/// Updates the scene
+		/////////////////////////////////////
 		void						Update();
+
+		/////////////////////////////////////
+		/// \brief Draw(sf::RenderWindow& window)
+		///
+		/// Draws the Scene to a specified sf::RenderWindow
+		/////////////////////////////////////
 		void						Draw(sf::RenderWindow& window);
 
+		/////////////////////////////////////
+		/// \brief bool Load(std::string filePath)
+		///
+		/// Loads a Tmx map from a specified filepath
+		/////////////////////////////////////
 		bool						Load(std::string filePath);
 	private:
-		typedef std::vector<Tmx::TileLayer*>	TileLayerContainer;
 		typedef std::vector<GameObject*>		GameObjectContainer;
 		typedef std::vector<sf::VertexArray*>	VertexArrayContainer;
 
-		//GameObjectContainer			m_GameObjects;
-		//TileLayerContainer			m_TileLayers;
-		//VertexArrayContainer		m_VertexLayers;
 		std::vector<sf::Texture*>   m_Tilesets;
-		//sf::Texture					m_Tileset;
 		Tmx::Map*					m_Map;
 
 		std::vector<SceneLayer*>	m_SceneLayers;

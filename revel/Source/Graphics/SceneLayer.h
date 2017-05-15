@@ -4,6 +4,12 @@
 #include <Tmx/TmxLayer.h>
 
 namespace rvl {
+/////////////////////////////////////
+/// \brief SceneLayer
+///
+/// SceneLayer is an abstract class for all the types of layers
+/// available in tiled.
+/////////////////////////////////////
 class SceneLayer {
 public:
 					SceneLayer();

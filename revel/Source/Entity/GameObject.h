@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>;
-#include "../Component/DrawableComponent.h";
-#include "../Component/UpdateableComponent.h";
+#include "Component/Component.h";
+#include "Common.h"
 
 class GameObject
 {
@@ -10,14 +10,17 @@ public:
 	GameObject();
 	~GameObject();
 
+	////////////////////////////////
+	/// \brief Get the object transform
+	///
+	/// \return The transform of the gameobject.
+	////////////////////////////////
 	void GetTransform();
-	void AddDrawableComponent(const rvl::DrawableComponent&);
-	void AddUpdateableComponent(const rvl::UpdateableComponent&);
+	void AddComponent(const rvl::Component&);
 
 private:
+	typedef std::vector<rvl::Component*> ComponentContainer;
 
-	std::vector<rvl::DrawableComponent> drawableComponents;
-	std::vector<rvl::UpdateableComponent> updateableComponents;
-
+	ComponentContainer m_Components;
 };
 

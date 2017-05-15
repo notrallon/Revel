@@ -8,14 +8,37 @@
 #include "../Scene.h"
 
 namespace rvl {
+	/////////////////////////////////////
+	/// \brief RevelGame
+	///
+	/// RevelGame is the core of the engine.
+	/////////////////////////////////////
 	class RevelGame {
 	public:
 								RevelGame();
 								~RevelGame();
 
+
+		/////////////////////////////////////
+		/// \brief void Start()
+		///
+		/// Starts the game
+		/////////////////////////////////////
 		void					Start();
+
+		/////////////////////////////////////
+		/// \brief void Stop()
+		///
+		/// Stops the game from running and closes the window.
+		/////////////////////////////////////
 		void					Stop();
 
+
+		/////////////////////////////////////
+		/// \brief const SharedContext& GetContext() const
+		///
+		/// \return The games Context
+		/////////////////////////////////////
 		const SharedContext&	GetContext() const;
 
 	private:
