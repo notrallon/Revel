@@ -1,18 +1,18 @@
 #pragma once
 
+#include "Graphics/Window.h"
+#include "SharedContext.h"
+#include "Scene.h"
+
 #include <SFML/Graphics.hpp>
 #include <string>
 
-#include "../Graphics/Window.h"
-#include "../SharedContext.h"
-#include "../Scene.h"
-
 namespace rvl {
-	/////////////////////////////////////
-	/// \brief RevelGame
+	////////////////////////////////////////////////////////////////////////////////
 	///
 	/// RevelGame is the core of the engine.
-	/////////////////////////////////////
+	///
+	////////////////////////////////////////////////////////////////////////////////
 	class RevelGame {
 	public:
 								RevelGame();

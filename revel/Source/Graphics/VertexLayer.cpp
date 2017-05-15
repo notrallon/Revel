@@ -63,17 +63,10 @@ namespace rvl {
 					3 --- 2
 					*/
 					// Position the vertices, as specified above
-
 					quad[0].position = sf::Vector2f( j * mapTileWidth, i * mapTileHeight - tileYPosOffset);
 					quad[1].position = sf::Vector2f((j + tiledWidthScale) * mapTileWidth, i * mapTileHeight - tileYPosOffset);
 					quad[2].position = sf::Vector2f((j + tiledWidthScale) * mapTileWidth, (i + tiledHeightScale) * mapTileHeight - tileYPosOffset);
 					quad[3].position = sf::Vector2f( j * mapTileWidth,	(i + tiledHeightScale) * mapTileHeight - tileYPosOffset);
-
-					quad[0].position = sf::Vector2f( j * mapTileWidth, i * mapTileHeight);
-					quad[1].position = sf::Vector2f((j + 1) * mapTileWidth, i * mapTileHeight);
-					quad[2].position = sf::Vector2f((j + 1) * mapTileWidth, (i + 1) * mapTileHeight);
-					quad[3].position = sf::Vector2f( j * mapTileWidth, (i + 1) * mapTileHeight);
-
 
 					// The default order to specify texture coordinates by.
 					std::array<size_t, 4> texOrder = { 0, 1, 2, 3 };

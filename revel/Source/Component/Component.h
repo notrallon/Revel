@@ -1,12 +1,12 @@
 #pragma once
 
 namespace rvl {
-	/////////////////////////////////////
-	/// \brief Component
+	////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Component is an abstract class that is used
-	/// by all the different types of components available.
-	/////////////////////////////////////
+	/// Component is an abstract base class for everything that can be attached to 
+	/// GameObjects.
+	///
+	////////////////////////////////////////////////////////////////////////////////
 	class Component {
 	public:
 							Component();
@@ -15,8 +15,6 @@ namespace rvl {
 		virtual void		Awake() = 0;
 		virtual void		Start() = 0;
 		virtual void		OnDestroy() = 0;
-
-
 
 	protected:
 		bool				destroy;
