@@ -14,8 +14,8 @@ namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
 	class VertexLayer : public SceneLayer {
 	public:
-										VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tileset);
-										~VertexLayer() override;
+                                        VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tileset);
+                                        ~VertexLayer() override;
 
 
 		/////////////////////////////////////
@@ -23,10 +23,10 @@ namespace rvl {
 		///
 		/// Draws all the VertexArrays to a specified sf::RenderWindow
 		/////////////////////////////////////
-		void							Draw(sf::RenderWindow& window) override;
+		void                            Draw(sf::RenderWindow& window) override;
 
 	private:
-		std::vector<sf::VertexArray*>	m_VertexArrays;
-		std::vector<sf::Texture*>&		m_Tilesets;
+		std::vector<sf::VertexArray*>   m_VertexArrays;
+		std::vector<sf::Texture*>&      m_Tilesets;
 	};
 }

@@ -10,7 +10,7 @@ namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
 	/// 
 	/// ObjectLayer translates all the objects from a Tmx::ObjectGroup and adds them
-	/// as gameobjects to the game. All gameobjects that are added to this class
+	/// as gameobjects to the game.
 	/// 
 	////////////////////////////////////////////////////////////////////////////////
 	class ObjectLayer : public SceneLayer {

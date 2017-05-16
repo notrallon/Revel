@@ -10,13 +10,8 @@ namespace rvl {
 	///
 	////////////////////////////////////////////////////////////////////////////////
 struct SharedContext {
-	SharedContext() : time(nullptr), window(nullptr) {
-
-	}
-
-	~SharedContext() {
-
-	}
+						SharedContext() : time(nullptr), window(nullptr) { }
+						~SharedContext() { }
 
 	Time*				time;
 	sf::RenderWindow*	window;

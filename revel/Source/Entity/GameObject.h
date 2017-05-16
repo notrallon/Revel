@@ -21,6 +21,8 @@ public:
 	/// \return The transform of the gameobject.
 	////////////////////////////////
 	void GetTransform();
+
+
 	void AddComponent(const rvl::Component&);
 
 private:
