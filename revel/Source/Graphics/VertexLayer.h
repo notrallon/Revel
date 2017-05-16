@@ -7,26 +7,26 @@
 #include <Tmx/TmxTileLayer.h>
 
 namespace rvl {
-	////////////////////////////////////////////////////////////////////////////////
-	///
-	/// VertexLayer is responsible for drawing out a Tmx::TileLayer
-	///
-	////////////////////////////////////////////////////////////////////////////////
-	class VertexLayer : public SceneLayer {
-	public:
-                                        VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tileset);
-                                        ~VertexLayer() override;
+    ////////////////////////////////////////////////////////////////////////////////
+    ///
+    /// VertexLayer is responsible for drawing out a Tmx::TileLayer
+    ///
+    ////////////////////////////////////////////////////////////////////////////////
+    class VertexLayer : public SceneLayer {
+    public:
+                                            VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tileset);
+                                            ~VertexLayer() override;
 
 
-		/////////////////////////////////////
-		/// \brief Draw
-		///
-		/// Draws all the VertexArrays to a specified sf::RenderWindow
-		/////////////////////////////////////
-		void                            Draw(sf::RenderWindow& window) override;
+	    /////////////////////////////////////
+	    /// \brief Draw
+	    ///
+	    /// Draws all the VertexArrays to a specified sf::RenderWindow
+	    /////////////////////////////////////
+        void                                Draw(sf::RenderWindow& window) override;
 
-	private:
-		std::vector<sf::VertexArray*>   m_VertexArrays;
-		std::vector<sf::Texture*>&      m_Tilesets;
-	};
+    private:
+	    std::vector<sf::VertexArray*>       m_VertexArrays;
+	    std::vector<sf::Texture*>&          m_Tilesets;
+    };
 }

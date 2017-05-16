@@ -1,5 +1,10 @@
 #pragma once
 
+#include <utility>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
+#include <string>
 #include <Windows.h>
 #include <stdint.h>
 
