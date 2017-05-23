@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update',['Update',['../classrvl_1_1_scene.html#ae6675125abb9ee6dc2e1be81aef3e270',1,'rvl::Scene']]]
+  ['start',['Start',['../classrvl_1_1_revel_game.html#aaef0b7a8d82a7cc326b39f45c3be0b83',1,'rvl::RevelGame']]],
+  ['stop',['Stop',['../classrvl_1_1_revel_game.html#ae2e535afe54176e266c1ec25ad11f9bc',1,'rvl::RevelGame']]]
 ];

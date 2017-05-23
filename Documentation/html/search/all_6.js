@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['revelgame',['RevelGame',['../classrvl_1_1_revel_game.html',1,'rvl']]]
+  ['objectlayer',['ObjectLayer',['../classrvl_1_1_object_layer.html',1,'rvl']]]
 ];

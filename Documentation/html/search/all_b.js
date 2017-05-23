@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['window',['Window',['../classrvl_1_1_window.html',1,'rvl']]]
+  ['vertexlayer',['VertexLayer',['../classrvl_1_1_vertex_layer.html',1,'rvl']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['gameobject',['GameObject',['../class_game_object.html#a0348e3ee2e83d56eafca7a3547f432c4',1,'GameObject']]],
-  ['getcontext',['GetContext',['../classrvl_1_1_revel_game.html#ab5f7b1a12844e3481d66ab00db1f0104',1,'rvl::RevelGame']]],
-  ['gettransform',['GetTransform',['../class_game_object.html#a926ece6e0dffd42ca39a1104c42eadaf',1,'GameObject']]]
+  ['draw',['Draw',['../classrvl_1_1_object_layer.html#a3b29bd63ae4233eba84817bfe9eecae9',1,'rvl::ObjectLayer::Draw()'],['../classrvl_1_1_vertex_layer.html#aa6c20822af0bcbf0c57329348b92c0b4',1,'rvl::VertexLayer::Draw()'],['../classrvl_1_1_scene.html#a62dd092ce10da061bb2bbb49eb0607db',1,'rvl::Scene::Draw()']]]
 ];

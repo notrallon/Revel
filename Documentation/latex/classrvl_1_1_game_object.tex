@@ -1,0 +1,107 @@
+\hypertarget{classrvl_1_1_game_object}{}\section{rvl\+:\+:Game\+Object Class Reference}
+\label{classrvl_1_1_game_object}\index{rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrvl_1_1_game_object_a0348e3ee2e83d56eafca7a3547f432c4}{Game\+Object} ()
+\item 
+\mbox{\Hypertarget{classrvl_1_1_game_object_a6ad2b16e8f9e749ec2ee9598d4d3ae8d}\label{classrvl_1_1_game_object_a6ad2b16e8f9e749ec2ee9598d4d3ae8d}} 
+{\bfseries Game\+Object} (\hyperlink{structrvl_1_1_shared_context}{rvl\+::\+Shared\+Context} $\ast$context)
+\item 
+\mbox{\Hypertarget{classrvl_1_1_game_object_a275a49882a7d619adef9698fee03fdab}\label{classrvl_1_1_game_object_a275a49882a7d619adef9698fee03fdab}} 
+void {\bfseries Fixed\+Update} ()
+\item 
+\mbox{\Hypertarget{classrvl_1_1_game_object_a3d0364d2a33aaadb0a00e530bd7d54c3}\label{classrvl_1_1_game_object_a3d0364d2a33aaadb0a00e530bd7d54c3}} 
+void {\bfseries Update} ()
+\item 
+\mbox{\Hypertarget{classrvl_1_1_game_object_a81751a7dfa6c0210449aa66fb731807c}\label{classrvl_1_1_game_object_a81751a7dfa6c0210449aa66fb731807c}} 
+void {\bfseries Late\+Update} ()
+\item 
+\mbox{\Hypertarget{classrvl_1_1_game_object_a69e5c86216b242ae78efa64ffde2ac17}\label{classrvl_1_1_game_object_a69e5c86216b242ae78efa64ffde2ac17}} 
+void {\bfseries Draw} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \hyperlink{classrvl_1_1_game_object_a84322da781cdc35cc352e4aaac5f9e47}{Get\+Component} () const
+\begin{DoxyCompactList}\small\item\em T$\ast$ \hyperlink{classrvl_1_1_game_object_a84322da781cdc35cc352e4aaac5f9e47}{Get\+Component()} \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \hyperlink{classrvl_1_1_game_object_a84757644ca964d0f24e003d35bec60a7}{Add\+Component} ()
+\begin{DoxyCompactList}\small\item\em T$\ast$ \hyperlink{classrvl_1_1_game_object_a84757644ca964d0f24e003d35bec60a7}{Add\+Component()} \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classrvl_1_1_game_object_a4b91502ba7295337f55c832dea27cf67}{Add\+Component} (T $\ast$component)
+\begin{DoxyCompactList}\small\item\em void \hyperlink{classrvl_1_1_game_object_a4b91502ba7295337f55c832dea27cf67}{Add\+Component(\+T$\ast$ component)} \end{DoxyCompactList}\item 
+void \hyperlink{classrvl_1_1_game_object_adfe0989dce9c2bf40a2b940595d7f6e3}{Get\+Transform} ()
+\begin{DoxyCompactList}\small\item\em Get the object transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrvl_1_1_game_object_a07639eeda59c4469da56f52a4eefb8ad}\label{classrvl_1_1_game_object_a07639eeda59c4469da56f52a4eefb8ad}} 
+\hyperlink{structrvl_1_1_shared_context}{rvl\+::\+Shared\+Context} $\ast$ {\bfseries Get\+Context} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrvl_1_1_game_object_a0348e3ee2e83d56eafca7a3547f432c4}\label{classrvl_1_1_game_object_a0348e3ee2e83d56eafca7a3547f432c4}} 
+\index{rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}!Game\+Object@{Game\+Object}}
+\index{Game\+Object@{Game\+Object}!rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}}
+\subsubsection{\texorpdfstring{Game\+Object()}{GameObject()}}
+{\footnotesize\ttfamily Game\+Object\+::\+Game\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Base class for all types of objects in the Scenes. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrvl_1_1_game_object_a84757644ca964d0f24e003d35bec60a7}\label{classrvl_1_1_game_object_a84757644ca964d0f24e003d35bec60a7}} 
+\index{rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}!Add\+Component@{Add\+Component}}
+\index{Add\+Component@{Add\+Component}!rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}}
+\subsubsection{\texorpdfstring{Add\+Component()}{AddComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T$\ast$ rvl\+::\+Game\+Object\+::\+Add\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+T$\ast$ \hyperlink{classrvl_1_1_game_object_a84757644ca964d0f24e003d35bec60a7}{Add\+Component()} 
+
+Add\+Component attempts to add a component to this gameobject, by first looking through the map to see if that type of component already exists. If the component type does not exist, it adds it to this gameobject and returns it. If the component type already exists it takes that component and returns it.
+
+\begin{DoxyReturn}{Returns}
+Added/found component. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrvl_1_1_game_object_a4b91502ba7295337f55c832dea27cf67}\label{classrvl_1_1_game_object_a4b91502ba7295337f55c832dea27cf67}} 
+\index{rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}!Add\+Component@{Add\+Component}}
+\index{Add\+Component@{Add\+Component}!rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}}
+\subsubsection{\texorpdfstring{Add\+Component()}{AddComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void rvl\+::\+Game\+Object\+::\+Add\+Component (\begin{DoxyParamCaption}\item[{T $\ast$}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+void \hyperlink{classrvl_1_1_game_object_a4b91502ba7295337f55c832dea27cf67}{Add\+Component(\+T$\ast$ component)} 
+
+\hyperlink{classrvl_1_1_game_object_a4b91502ba7295337f55c832dea27cf67}{Add\+Component(\+T$\ast$ component)} attempts to add a component that was created outside this gameobject. \mbox{\Hypertarget{classrvl_1_1_game_object_a84322da781cdc35cc352e4aaac5f9e47}\label{classrvl_1_1_game_object_a84322da781cdc35cc352e4aaac5f9e47}} 
+\index{rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}!Get\+Component@{Get\+Component}}
+\index{Get\+Component@{Get\+Component}!rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}}
+\subsubsection{\texorpdfstring{Get\+Component()}{GetComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T$\ast$ rvl\+::\+Game\+Object\+::\+Get\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+T$\ast$ \hyperlink{classrvl_1_1_game_object_a84322da781cdc35cc352e4aaac5f9e47}{Get\+Component()} 
+
+\hyperlink{classrvl_1_1_game_object_a84322da781cdc35cc352e4aaac5f9e47}{Get\+Component()} tries to find a component attached to this \hyperlink{classrvl_1_1_game_object}{Game\+Object}. If the \hyperlink{classrvl_1_1_component}{Component} is found it returns a pointer to it. Otherwise it returns nullptr.
+
+\begin{DoxyReturn}{Returns}
+Found component/nullptr. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrvl_1_1_game_object_adfe0989dce9c2bf40a2b940595d7f6e3}\label{classrvl_1_1_game_object_adfe0989dce9c2bf40a2b940595d7f6e3}} 
+\index{rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}!Get\+Transform@{Get\+Transform}}
+\index{Get\+Transform@{Get\+Transform}!rvl\+::\+Game\+Object@{rvl\+::\+Game\+Object}}
+\subsubsection{\texorpdfstring{Get\+Transform()}{GetTransform()}}
+{\footnotesize\ttfamily void rvl\+::\+Game\+Object\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the object transform. 
+
+\begin{DoxyReturn}{Returns}
+The transform of the gameobject. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Entity/Game\+Object.\+h\item 
+Entity/Game\+Object.\+cpp\end{DoxyCompactItemize}
