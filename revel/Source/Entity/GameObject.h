@@ -116,6 +116,7 @@ namespace rvl {
         ////////////////////
 	    const rvl::Transform&   GetTransform() const;
 		const sf::Vector2f&		GetPosition() const;
+        void                    SetPosition(float x, float y);
 
         rvl::SharedContext*     GetContext() const;
 

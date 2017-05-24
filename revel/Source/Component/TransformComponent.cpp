@@ -27,6 +27,10 @@ namespace rvl {
 	}
 	
 	void TransformComponent::Draw() {
+        sf::RectangleShape shape;
+        shape.setSize(m_Size);
+        shape.setPosition(m_Transform.getPosition());
+        //m_Context->window->draw(shape);
 	}
 	
 	void TransformComponent::OnDestroy() {
@@ -35,4 +39,16 @@ namespace rvl {
 	const sf::Vector2f& TransformComponent::GetPosition() const {
 		return m_Transform.getPosition();
 	}
+
+    void TransformComponent::SetPosition(float x, float y) {
+        m_Transform.setPosition(sf::Vector2f(x, y));
+    }
+    
+    const sf::Vector2f & TransformComponent::GetSize() const {
+        return m_Size;
+    }
+    
+    void TransformComponent::SetSize(int x, int y) {
+        m_Size = sf::Vector2f(x, y);
+    }
 }

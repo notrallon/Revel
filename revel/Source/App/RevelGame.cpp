@@ -3,7 +3,7 @@
 #include <sstream>
 
 #define RVL_VERSION_MAJOR "0"
-#define RVL_VERSION_MINOR "0"
+#define RVL_VERSION_MINOR "2"
 #define RVL_VERSION_PATCH "6"
 
 namespace rvl {
@@ -36,6 +36,7 @@ namespace rvl {
 
 		// Set up our context
 		m_Context.time = &m_Time;
+        m_Context.window = &m_Window;
 
 		char path[100];
 		GetPrivateProfileString("Map", "Path", "", path, sizeof(path) / sizeof(path[0]), file);
@@ -48,6 +49,7 @@ namespace rvl {
 
 		std::cout << mapstring << std::endl;
 
+        m_Scene.SetContext(&m_Context);
 		m_Scene.Load(mapstring);
 
 		Run();

@@ -8,7 +8,8 @@ namespace rvl {
 	              , m_Height(0)
 	              , m_Width(0)
 	              , m_TileHeight(0)
-	              , m_TileWidth(0) {
+	              , m_TileWidth(0)
+                  , m_Context(nullptr) {
 	}
 
 	Scene::~Scene() {
@@ -76,6 +77,10 @@ namespace rvl {
 		return true;
 	}
 
+    void Scene::SetContext(rvl::SharedContext* context) {
+        m_Context = context;
+    }
+
 	SceneLayer* Scene::CreateLayerFromTmx(Tmx::Layer* layer) {
 		// Check what layertype the TmxLayer is and create a SceneLayer from it
 		switch (layer->GetLayerType()) {
@@ -84,7 +89,7 @@ namespace rvl {
 			} break;
 
 			case Tmx::LayerType::TMX_LAYERTYPE_OBJECTGROUP: {
-				return new ObjectLayer(static_cast<Tmx::ObjectGroup*>(layer), m_Tilesets);
+				return new ObjectLayer(static_cast<Tmx::ObjectGroup*>(layer), m_Tilesets, m_Context);
 			} break;
 
 			case Tmx::LayerType::TMX_LAYERTYPE_IMAGE_LAYER: {

@@ -18,8 +18,13 @@ namespace rvl {
 		virtual void			OnDestroy()     override;
 
 		const sf::Vector2f&		GetPosition()	const;
+        void                    SetPosition(float x, float y);
+
+        const sf::Vector2f&     GetSize() const;
+        void                    SetSize(int x, int y);
 
 	private:
 		sf::Transformable		m_Transform;
+        sf::Vector2f            m_Size;
 	};
 }

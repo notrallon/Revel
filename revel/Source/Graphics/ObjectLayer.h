@@ -15,7 +15,7 @@ namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
 	class ObjectLayer : public SceneLayer {
 	public:
-									ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets);
+									ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets, rvl::SharedContext* context);
 									~ObjectLayer() override;
 
 		////////////////////
@@ -28,5 +28,6 @@ namespace rvl {
 	private:
 		std::vector<GameObject*>	m_GameObjects;
 		sf::Shape*					m_Player;
+        rvl::SharedContext*         m_Context;
 	};
 }

@@ -47,6 +47,10 @@ namespace rvl {
 	const sf::Vector2f & GameObject::GetPosition() const {
 		return m_Transform->GetPosition();
 	}
+
+    void GameObject::SetPosition(float x, float y) {
+        m_Transform->SetPosition(x, y);
+    }
 	
 	rvl::SharedContext* GameObject::GetContext() const {
 		return m_Context;

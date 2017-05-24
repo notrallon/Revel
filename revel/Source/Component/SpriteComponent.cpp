@@ -3,10 +3,13 @@
 
 namespace rvl {
     SpriteComponent::SpriteComponent() {
+        m_Sprite = new sf::Sprite();
     }
 
     SpriteComponent::SpriteComponent(GameObject* gameObject) : Component(gameObject) {
+        m_Context = m_GameObject->GetContext();
         m_Sprite = new sf::Sprite();
+        m_Sprite->setPosition(m_GameObject->GetPosition());
     }
 
     SpriteComponent::~SpriteComponent() {
@@ -46,4 +49,13 @@ namespace rvl {
 	void SpriteComponent::SetTextureRect(const sf::IntRect& rect) {
 		m_Sprite->setTextureRect(rect);
 	}
+    
+    const sf::Vector2f& SpriteComponent::GetSize() const {
+        // TODO: insert return statement here
+        return sf::Vector2f(m_Sprite->getGlobalBounds().width, m_Sprite->getGlobalBounds().height);
+    }
+    
+    void SpriteComponent::SetOrigin(float x, float y) {
+        m_Sprite->setOrigin(x, y);
+    }
 }

@@ -47,12 +47,15 @@ namespace rvl {
 		/// Loads a Tmx map from a specified filepath
 		/////////////////////////////////////
 		bool						Load(std::string filePath);
+
+        void                        SetContext(rvl::SharedContext* context);
 	private:
 		typedef std::vector<GameObject*>		GameObjectContainer;
 		typedef std::vector<sf::VertexArray*>	VertexArrayContainer;
 
 		std::vector<sf::Texture*>   m_Tilesets;
 		Tmx::Map*					m_Map;
+        rvl::SharedContext*         m_Context;
 
 		std::vector<SceneLayer*>	m_SceneLayers;
 
