@@ -47,7 +47,7 @@ namespace rvl {
 
 				if (object->GetGid() != 0) {
                     rvl::SpriteComponent* sprite = gameObject->AddComponent<rvl::SpriteComponent>();
-                    
+					sprite->SetSize(object->GetWidth(), object->GetHeight());
 					// For some reason: objectGroup->mapGetMap()->FindTileset(object->GetGid()) doesn't
 					// work, so we have to first get the tileset index in order to get the tileset
 					int tilesetIndex = objectGroup->mapGetMap()->FindTilesetIndex(object->GetGid());
@@ -67,6 +67,8 @@ namespace rvl {
 				} else {
 					//rect->setFillColor(sf::Color(0, 0, 255, 125));
 				}
+
+				auto propList = object->GetProperties().GetList();
 
 				// We grab the player just so we can use it for debugging atm
 				/*if (object->GetName() == "player-start") {

@@ -10,6 +10,7 @@ namespace rvl {
         m_Context = m_GameObject->GetContext();
         m_Sprite = new sf::Sprite();
         m_Sprite->setPosition(m_GameObject->GetPosition());
+		m_Rectangle.setPosition(m_GameObject->GetPosition());
     }
 
     SpriteComponent::~SpriteComponent() {
@@ -31,10 +32,11 @@ namespace rvl {
 
     void SpriteComponent::LateUpdate() {
 		m_Sprite->setPosition(m_GameObject->GetPosition());
+		m_Rectangle.setPosition(m_GameObject->GetPosition());
     }
 
     void SpriteComponent::Draw() {
-		m_Context->window->draw(*m_Sprite);
+		m_Context->window->draw(m_Rectangle);
     }
 
     void SpriteComponent::OnDestroy() {
@@ -44,18 +46,26 @@ namespace rvl {
 
     void SpriteComponent::SetTexture(const sf::Texture& texture) {
         m_Sprite->setTexture(texture);
+		m_Rectangle.setTexture(&texture);
     }
 
 	void SpriteComponent::SetTextureRect(const sf::IntRect& rect) {
-		m_Sprite->setTextureRect(rect);
+		//m_Sprite->setTextureRect(rect);
+		m_Rectangle.setTextureRect(rect);
 	}
     
     const sf::Vector2f& SpriteComponent::GetSize() const {
         // TODO: insert return statement here
-        return sf::Vector2f(m_Sprite->getTextureRect().width, m_Sprite->getTextureRect().height);
+        //return sf::Vector2f(m_Sprite->getTextureRect().width, m_Sprite->getTextureRect().height);
+		return m_Rectangle.getSize();
     }
+
+	void SpriteComponent::SetSize(float x, float y) {
+		m_Rectangle.setSize(sf::Vector2f(x, y));
+	}
     
     void SpriteComponent::SetOrigin(float x, float y) {
         m_Sprite->setOrigin(x, y);
+		m_Rectangle.setOrigin(x, y);
     }
 }

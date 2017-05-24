@@ -26,10 +26,12 @@ namespace rvl {
 		void			        SetTextureRect(const sf::IntRect& rect);
 
         const sf::Vector2f&     GetSize() const;
+		void					SetSize(float x, float y);
 
         void                    SetOrigin(float x, float y);
 
     private:
         sf::Sprite*             m_Sprite;
+		sf::RectangleShape		m_Rectangle;
     };
 }
