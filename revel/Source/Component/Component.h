@@ -1,10 +1,12 @@
 #pragma once
 
-#include "Entity/GameObject.h"
+#include "SharedContext.h"
 
 #include <SFML/Graphics.hpp>
 
 namespace rvl {
+	class GameObject;
+
 	////////////////////////////////////////////////////////////////////////////////
 	///
 	/// Component is an abstract base class for everything that can be attached to 

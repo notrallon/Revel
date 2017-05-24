@@ -26,7 +26,7 @@ namespace rvl {
 		virtual void				Draw(sf::RenderWindow& window);
 
 	private:
-		std::vector<sf::Shape*>		m_GameObjects;
+		std::vector<GameObject*>	m_GameObjects;
 		sf::Shape*					m_Player;
 	};
 }

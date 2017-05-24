@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "Entity/GameObject.h"
 
 namespace rvl {
     Component::Component() : m_GameObject(nullptr) {

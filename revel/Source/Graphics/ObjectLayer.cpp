@@ -10,7 +10,7 @@ namespace rvl {
 	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets): m_Player(nullptr) {
 		// Loop through all objects and create shapes depending on what type of object it is
 		for (auto object : objectGroup->GetObjects()) {
-			if (object->GetEllipse() != 0) {
+			/*if (object->GetEllipse() != 0) {
 				sf::CircleShape* circle = new sf::CircleShape(object->GetWidth() / 2);
 				circle->setFillColor(sf::Color(0, 255, 0, 50));
 				circle->setPosition(object->GetX(), object->GetY());
@@ -62,7 +62,7 @@ namespace rvl {
 				}
 
 				m_GameObjects.push_back(rect);
-			}
+			}*/
 		}
 	}
 
@@ -84,12 +84,12 @@ namespace rvl {
 
 		std::sort(m_GameObjects.begin(), 
 				  m_GameObjects.end(), 
-				  [](const sf::Shape* A, const sf::Shape* B) { 
-						return A->getPosition().y < B->getPosition().y; 
+				  [](const rvl::GameObject* A, const GameObject* B) { 
+						return A->GetPosition().y < B->GetPosition().y; 
 				  });
 
 		for (auto object : m_GameObjects) {
-			window.draw(*object);
+			object->Draw();
 		}
 	}
 }

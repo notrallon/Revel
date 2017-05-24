@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component/Component.h";
+#include "Components.h";
 #include "Common.h"
 #include "SharedContext.h"
 
@@ -8,6 +8,7 @@
 #include <typeindex>
 #include <typeinfo>
 #include <unordered_map>
+#include <iostream>
 
 namespace rvl {
 
@@ -113,15 +114,17 @@ namespace rvl {
 	    ///
 	    /// \return The transform of the gameobject.
         ////////////////////
-	    void                    GetTransform();
+	    const rvl::Transform&   GetTransform() const;
+		const sf::Vector2f&		GetPosition() const;
 
         rvl::SharedContext*     GetContext() const;
 
     private:
 	    typedef std::unordered_map<std::type_index, rvl::Component*> ComponentContainer;
 
-	    ComponentContainer m_Components;
-        rvl::SharedContext* m_Context;
+	    ComponentContainer		m_Components;
+        rvl::SharedContext*		m_Context;
+		rvl::Transform*			m_Transform;
     };
 
 }

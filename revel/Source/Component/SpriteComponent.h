@@ -21,7 +21,8 @@ namespace rvl {
         virtual void    Draw()          override;
         virtual void    OnDestroy()     override;
 
-        void            SetTexture(sf::Texture& texture);
+        void            SetTexture(const sf::Texture& texture);
+		void			SetTextureRect(const sf::IntRect& rect);
 
     private:
         sf::Sprite*     m_Sprite;
