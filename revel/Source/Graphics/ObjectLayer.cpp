@@ -51,15 +51,19 @@ namespace rvl {
 					// For some reason: objectGroup->mapGetMap()->FindTileset(object->GetGid()) doesn't
 					// work, so we have to first get the tileset index in order to get the tileset
 					int tilesetIndex = objectGroup->mapGetMap()->FindTilesetIndex(object->GetGid());
-					int tileSize = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex]->GetTileHeight();
-					int firstGid = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex]->GetFirstGid();
+					Tmx::Tileset* tmxTileset = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex];
+					int margin = tmxTileset->GetMargin();
+					int spacing = tmxTileset->GetSpacing();
+					int tileWidth = tmxTileset->GetTileWidth();
+					int tileHeight = tmxTileset->GetTileHeight();
+					int firstGid = tmxTileset->GetFirstGid();
 					sprite->SetTexture(*tilesets[tilesetIndex]);
-					sprite->SetOrigin(0.0f, sprite->GetSize().y);
-					int tu = (object->GetGid() - firstGid) % (tilesets[tilesetIndex]->getSize().x / tileSize);
-					int tv = (object->GetGid() - firstGid) / (tilesets[tilesetIndex]->getSize().x / tileSize);
+					int tu = (object->GetGid() - firstGid) % (tilesets[tilesetIndex]->getSize().x / tileWidth);
+					int tv = (object->GetGid() - firstGid) / (tilesets[tilesetIndex]->getSize().x / tileWidth);
 
 					//rect->setTextureRect(sf::IntRect(tu * tileSize, tv * tileSize, tileSize, tileSize));
-                    sprite->SetTextureRect(sf::IntRect(tu * tileSize, tv * tileSize, tileSize, tileSize));
+                    sprite->SetTextureRect(sf::IntRect(margin + tu * (tileWidth + spacing), margin + tv * (tileHeight + spacing), tileWidth, tileHeight));
+					sprite->SetOrigin(0.0f, sprite->GetSize().y);
 				} else {
 					//rect->setFillColor(sf::Color(0, 0, 255, 125));
 				}

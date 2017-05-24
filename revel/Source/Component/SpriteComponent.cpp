@@ -52,7 +52,7 @@ namespace rvl {
     
     const sf::Vector2f& SpriteComponent::GetSize() const {
         // TODO: insert return statement here
-        return sf::Vector2f(m_Sprite->getGlobalBounds().width, m_Sprite->getGlobalBounds().height);
+        return sf::Vector2f(m_Sprite->getTextureRect().width, m_Sprite->getTextureRect().height);
     }
     
     void SpriteComponent::SetOrigin(float x, float y) {

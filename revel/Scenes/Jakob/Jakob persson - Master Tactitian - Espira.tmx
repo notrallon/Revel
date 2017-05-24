@@ -501,7 +501,7 @@
   <object id="28" name="Villager" type="NPC" x="1280" y="1216" width="32" height="32"/>
   <object id="29" name="Villager" type="NPC" x="256" y="320" width="32" height="32"/>
   <object id="30" name="Villager" type="NPC" x="992" y="256" width="32" height="32"/>
-  <object id="60" gid="651" x="687" y="354" width="32" height="32"/>
+  <object id="60" gid="651" x="754" y="336" width="32" height="32"/>
   <object id="61" gid="274" x="574" y="313" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Colliders">
