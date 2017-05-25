@@ -2,6 +2,7 @@
 
 namespace rvl {
 	GameObject::GameObject() {
+		m_Transform = AddComponent<rvl::Transform>();
 	}
 	
 	GameObject::GameObject(rvl::SharedContext * context) : m_Context(context) {
@@ -54,5 +55,26 @@ namespace rvl {
 	
 	rvl::SharedContext* GameObject::GetContext() const {
 		return m_Context;
+	}
+	
+	void GameObject::DoBind(lua_State * L) {
+		//template<typename T>
+		//	luabridge::getGlobalNamespace(L)
+		//		.beginNamespace("rvl")
+		//			.beginClass<GameObject>("GameObject")
+		//				.addConstructor<void(*)(void)>()
+		//				.addFunction("AddComponent", AddComponent)
+		//				.addFunction("GetComponent", GetComponent)
+		//				.addProperty("transform", GetTransform)
+		//			.endclass()
+		//		.endNamespace();
+		luabridge::getGlobalNamespace(L)
+			.beginNamespace("rvl")
+				.beginClass<GameObject>("GameObject")
+					.addConstructor<void(*)(void)>()
+					.addFunction("AddComponent", &AddComponent<SpriteComponent>)
+					.addFunction("GetComponent", &GetComponent<SpriteComponent>)
+				.endClass()
+			.endNamespace();
 	}
 }

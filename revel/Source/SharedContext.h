@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Utils/Time.h"
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
+#include <Lua/lua.hpp>
+#include <LuaBridge/LuaBridge.h>
 
 namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
@@ -10,10 +12,11 @@ namespace rvl {
 	///
 	////////////////////////////////////////////////////////////////////////////////
 	struct SharedContext {
-							SharedContext() : time(nullptr), window(nullptr) { }
+							SharedContext() : time(nullptr), window(nullptr), luaState(nullptr) { }
 							~SharedContext() { }
 
 		Time*				time;
 		sf::RenderWindow*	window;
+		lua_State*			luaState;
 	};
 }

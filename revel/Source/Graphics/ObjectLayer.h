@@ -2,11 +2,12 @@
 
 #include "Common.h"
 #include "SceneLayer.h"
-#include "Entity/GameObject.h"
 
 #include <Tmx/TmxObjectGroup.h>
 
 namespace rvl {
+	class GameObject;
+	struct SharedContext;
 	////////////////////////////////////////////////////////////////////////////////
 	/// 
 	/// ObjectLayer translates all the objects from a Tmx::ObjectGroup and adds them

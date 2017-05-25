@@ -9,6 +9,7 @@ namespace rvl {
     ///
     ////////////////////////////////////////////////////////////////////////////////
     class SpriteComponent : public Component {
+		friend void Bind<SpriteComponent>(lua_State*);
     public:
                                 SpriteComponent();
                                 SpriteComponent(GameObject* gameObject);
@@ -28,7 +29,16 @@ namespace rvl {
         const sf::Vector2f&     GetSize() const;
 		void					SetSize(float x, float y);
 
+		const float&			GetWidth() const;
+		const float&			GetHeight() const;
+
+		void					SetWidth(float x);
+		void					SetHeight(float y);
+
         void                    SetOrigin(float x, float y);
+
+	protected:
+		static void DoBind(lua_State* L);
 
     private:
         sf::Sprite*             m_Sprite;

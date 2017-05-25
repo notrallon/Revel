@@ -143,16 +143,20 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Source\App\RevelGame.cpp" />
     <ClCompile Include="Source\Component\Component.cpp" />
+    <ClCompile Include="Source\Component\LuaComponent.cpp" />
     <ClCompile Include="Source\Component\SpriteComponent.cpp" />
     <ClCompile Include="Source\Component\TransformComponent.cpp" />
     <ClCompile Include="Source\Entity\GameObject.cpp" />
     <ClCompile Include="Source\Graphics\ObjectLayer.cpp" />
     <ClCompile Include="Source\Graphics\SceneLayer.cpp" />
     <ClCompile Include="Source\Graphics\VertexLayer.cpp" />
+    <ClCompile Include="Source\LuaBind.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Utils\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Component\LuaComponent.h" />
+    <ClInclude Include="Source\LuaBind.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Source\App\RevelGame.h" />
     <ClInclude Include="Source\Audio\Audio.h" />

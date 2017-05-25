@@ -1,5 +1,5 @@
 #include "ObjectLayer.h"
-#include "Components.h"
+#include "Entity/GameObject.h"
 #include <iostream>
 #include <Tmx/TmxMap.h>
 #include <Tmx/TmxObject.h>
@@ -10,6 +10,17 @@
 namespace rvl {
 	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets, rvl::SharedContext* context): m_Player(nullptr), m_Context(context) {
 		// Loop through all objects and create shapes depending on what type of object it is
+		
+		//lua_State* L = luaL_newstate();
+		//luaL_openlibs(L);
+		rvl::BindAll(context);
+		//rvl::Bind<GameObject>(L);
+		//Bind<SpriteComponent>(L);
+/*
+		if (luaL_dofile(L, "components.lua")) {
+			std::cerr << lua_tostring(L, -1) << std::endl;
+		}*/
+
 		for (auto object : objectGroup->GetObjects()) {
             rvl::GameObject* gameObject = new rvl::GameObject(m_Context);
             //gameObject->GetTransform().SetSize(object->GetWidth(), object->GetHeight());
@@ -52,11 +63,11 @@ namespace rvl {
 					// work, so we have to first get the tileset index in order to get the tileset
 					int tilesetIndex = objectGroup->mapGetMap()->FindTilesetIndex(object->GetGid());
 					Tmx::Tileset* tmxTileset = objectGroup->mapGetMap()->GetTilesets()[tilesetIndex];
-					int margin = tmxTileset->GetMargin();
-					int spacing = tmxTileset->GetSpacing();
-					int tileWidth = tmxTileset->GetTileWidth();
-					int tileHeight = tmxTileset->GetTileHeight();
-					int firstGid = tmxTileset->GetFirstGid();
+					int margin		= tmxTileset->GetMargin();
+					int spacing		= tmxTileset->GetSpacing();
+					int tileWidth	= tmxTileset->GetTileWidth();
+					int tileHeight	= tmxTileset->GetTileHeight();
+					int firstGid	= tmxTileset->GetFirstGid();
 					sprite->SetTexture(*tilesets[tilesetIndex]);
 					int tu = (object->GetGid() - firstGid) % (tilesets[tilesetIndex]->getSize().x / tileWidth);
 					int tv = (object->GetGid() - firstGid) / (tilesets[tilesetIndex]->getSize().x / tileWidth);
@@ -69,6 +80,10 @@ namespace rvl {
 				}
 
 				auto propList = object->GetProperties().GetList();
+
+				if (propList.find("script") != propList.end()) {
+					gameObject->AddComponent<LuaComponent>();
+				}
 
 				// We grab the player just so we can use it for debugging atm
 				/*if (object->GetName() == "player-start") {

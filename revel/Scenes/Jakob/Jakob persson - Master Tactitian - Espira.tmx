@@ -510,7 +510,11 @@
   </object>
   <object id="30" name="Villager" type="NPC" x="992" y="256" width="32" height="32"/>
   <object id="60" gid="651" x="754" y="336" width="32" height="32"/>
-  <object id="61" gid="274" x="574" y="324" width="32" height="72"/>
+  <object id="61" gid="274" x="574" y="324" width="32" height="72">
+   <properties>
+    <property name="script" value="script.lua"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Colliders">
   <object id="2" name="Tree" type="Collider" x="37.3333" y="1552" width="64" height="64">

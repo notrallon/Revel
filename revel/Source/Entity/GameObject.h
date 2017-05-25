@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LuaBind.h"
 #include "Components.h";
 #include "Common.h"
 #include "SharedContext.h"
@@ -11,10 +12,10 @@
 #include <iostream>
 
 namespace rvl {
-
     class GameObject
     {
-	    ////////////////////////////////////////////////////////////////////////////////
+		friend void Bind<GameObject>(lua_State*);
+		////////////////////////////////////////////////////////////////////////////////
 	    ///
 	    /// Base class for all types of objects in the Scenes.
 	    ///
@@ -103,7 +104,7 @@ namespace rvl {
         /// AddComponent(T* component) attempts to add a
         /// component that was created outside this gameobject.
         ////////////////////
-        void AddComponent(T* component) {
+        void AddExistingComponent(T* component) {
             if (m_Components.find(typeid(T)) == m_Components.end()) {
                 m_Components.emplace(typeid(T), component);
             }
@@ -119,6 +120,9 @@ namespace rvl {
         void                    SetPosition(float x, float y);
 
         rvl::SharedContext*     GetContext() const;
+
+	protected:
+		static void DoBind(lua_State* L);
 
     private:
 	    typedef std::unordered_map<std::type_index, rvl::Component*> ComponentContainer;
