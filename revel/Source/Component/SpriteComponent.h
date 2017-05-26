@@ -30,18 +30,17 @@ namespace rvl {
 		void					SetSize(float x, float y);
 
 		const float&			GetWidth() const;
-		const float&			GetHeight() const;
-
 		void					SetWidth(float x);
+		
+		const float&			GetHeight() const;
 		void					SetHeight(float y);
 
         void                    SetOrigin(float x, float y);
 
 	protected:
-		static void DoBind(lua_State* L);
+		static void				DoBind(lua_State* L);
 
     private:
-        sf::Sprite*             m_Sprite;
 		sf::RectangleShape		m_Rectangle;
     };
 }

@@ -45,7 +45,7 @@ namespace rvl {
 		return *m_Transform;
 	}
 
-	const sf::Vector2f & GameObject::GetPosition() const {
+	const sf::Vector2f& GameObject::GetPosition() const {
 		return m_Transform->GetPosition();
 	}
 
@@ -58,16 +58,6 @@ namespace rvl {
 	}
 	
 	void GameObject::DoBind(lua_State * L) {
-		//template<typename T>
-		//	luabridge::getGlobalNamespace(L)
-		//		.beginNamespace("rvl")
-		//			.beginClass<GameObject>("GameObject")
-		//				.addConstructor<void(*)(void)>()
-		//				.addFunction("AddComponent", AddComponent)
-		//				.addFunction("GetComponent", GetComponent)
-		//				.addProperty("transform", GetTransform)
-		//			.endclass()
-		//		.endNamespace();
 		luabridge::getGlobalNamespace(L)
 			.beginNamespace("rvl")
 				.beginClass<GameObject>("GameObject")

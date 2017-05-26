@@ -9,9 +9,9 @@ namespace rvl {
 	class LuaComponent : public Component {
 		friend void rvl::Bind<LuaComponent>(lua_State*);
 	public:
-		LuaComponent();
-		LuaComponent(GameObject* gameObject);
-		~LuaComponent();
+								LuaComponent();
+								LuaComponent(GameObject* gameObject);
+								~LuaComponent();
 
 		virtual void            Awake()         override;
 		virtual void            Start()         override;
@@ -22,6 +22,6 @@ namespace rvl {
 		virtual void            OnDestroy()     override;
 
 	protected:
-		static void DoBind(lua_State* L);
+		static void				DoBind(lua_State* L);
 	};
 }

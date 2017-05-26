@@ -69,7 +69,7 @@ namespace rvl {
             if (component != m_Components.end()) {
                 return static_cast<T*>(component->second);
             }
-            std::cout << "Could not find component type.. " << std::endl;
+            std::cerr << "Could not find component type.. " << std::endl;
             return nullptr;
         }
 
@@ -87,14 +87,14 @@ namespace rvl {
         /// \return Added/found component.
         ////////////////////
         T* AddComponent() {
-            auto findComponent = m_Components.find(typeid(T));
-            if (findComponent == m_Components.end()) {
+            auto foundComponent = m_Components.find(typeid(T));
+            if (foundComponent == m_Components.end()) {
                 T* component = new T(this);
                 m_Components.emplace(typeid(T), component);
                 return component;
             }
-            std::cout << "Could not add because of duplicate component type. Returning found component." << std::endl;
-            return static_cast<T*>(findComponent->second);
+            std::cerr << "Could not add because of duplicate component type. Returning found component." << std::endl;
+            return static_cast<T*>(foundComponent->second);
         }
 
         template <typename T>

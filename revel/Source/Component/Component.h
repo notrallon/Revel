@@ -19,7 +19,7 @@ namespace rvl {
                             Component(GameObject* gameObject);
 		virtual				~Component();
 
-		virtual void		Awake() {}
+		virtual void		Awake()			{}
 		virtual void		Start()         {}
         virtual void        FixedUpdate()   {}
         virtual void        Update()        {}
