@@ -1,4 +1,5 @@
-gameObject = rvl.GameObject();
+-- gameObject = rvl.GameObject();
+gameObject = 0;
 
 sprite = gameObject:AddComponent();
 
