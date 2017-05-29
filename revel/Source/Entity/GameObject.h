@@ -25,6 +25,8 @@ namespace rvl {
                 GameObject(rvl::SharedContext* context);
 	            ~GameObject();
 
+		void	Start();
+
         ////////////////////
         /// \brief void FixedUpdate()
         ///

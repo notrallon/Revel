@@ -9,7 +9,6 @@
 namespace rvl {
 
 	RevelGame::RevelGame() {
-		
 	}
 
 	RevelGame::~RevelGame() {
@@ -28,7 +27,9 @@ namespace rvl {
 
 		uint32 style = fullScreen ? sf::Style::Fullscreen : sf::Style::Default;
 
-
+		// Set up physics world
+		m_PhysicsWorld = new b2World(b2Vec2(0.0f, 0.0f));
+		
 		std::stringstream revelVersion; 
 		revelVersion << ": Revel Engine Alpha Version - " << RVL_VERSION_MAJOR << "." << RVL_VERSION_MINOR << "." << RVL_VERSION_PATCH;
 
@@ -37,6 +38,7 @@ namespace rvl {
 		// Set up our context
 		m_Context.time = &m_Time;
         m_Context.window = &m_Window;
+		m_Context.physicsWorld = m_PhysicsWorld;
 
 		char path[100];
 		GetPrivateProfileString("Map", "Path", "", path, sizeof(path) / sizeof(path[0]), file);
@@ -74,6 +76,7 @@ namespace rvl {
 		while (m_Window.isOpen()) {
 			m_Time.Update(); // Time should always be updated first
 			
+			m_PhysicsWorld->Step(m_Time.DeltaTime(), 2, 6);
 			HandleEvents();
 			FixedUpdate();
 			Update();

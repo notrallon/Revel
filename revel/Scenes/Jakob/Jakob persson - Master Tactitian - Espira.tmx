@@ -509,10 +509,14 @@
    </properties>
   </object>
   <object id="30" name="Villager" type="NPC" x="992" y="256" width="32" height="32"/>
-  <object id="60" gid="651" x="754" y="336" width="32" height="32"/>
+  <object id="60" gid="651" x="754" y="336" width="32" height="32">
+   <properties>
+    <property name="script" value="components.lua"/>
+   </properties>
+  </object>
   <object id="61" gid="274" x="574" y="324" width="32" height="72">
    <properties>
-    <property name="script" value="script.lua"/>
+    <property name="script" value="componentstwo.lua"/>
    </properties>
   </object>
  </objectgroup>

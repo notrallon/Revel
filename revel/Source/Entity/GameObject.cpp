@@ -16,6 +16,12 @@ namespace rvl {
 		}
 		m_Components.clear();
 	}
+
+	void GameObject::Start() {
+		for (auto component : m_Components) {
+			component.second->Start();
+		}
+	}
 	
 	void GameObject::FixedUpdate() {
 		for (auto component : m_Components) {
@@ -62,8 +68,11 @@ namespace rvl {
 			.beginNamespace("rvl")
 				.beginClass<GameObject>("GameObject")
 					.addConstructor<void(*)(void)>()
-					.addFunction("AddComponent", &AddComponent<SpriteComponent>)
-					.addFunction("GetComponent", &GetComponent<SpriteComponent>)
+					.addFunction("AddSprite", &AddComponent<SpriteComponent>)
+					.addFunction("GetSprite", &GetComponent<SpriteComponent>)
+					.addFunction("GetScript", &GetComponent<LuaComponent>)
+					.addFunction("AddBoxCollider", &AddComponent<BoxColliderComponent>)
+					.addFunction("GetBoxCollider", &GetComponent<BoxColliderComponent>)
 				.endClass()
 			.endNamespace();
 	}

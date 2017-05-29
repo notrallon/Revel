@@ -82,7 +82,8 @@ namespace rvl {
 				auto propList = object->GetProperties().GetList();
 
 				if (propList.find("script") != propList.end()) {
-					gameObject->AddComponent<LuaComponent>();
+					auto component = gameObject->AddComponent<LuaComponent>();
+					component->AddScript(propList.find("script")->second);
 				}
 
 				// We grab the player just so we can use it for debugging atm
@@ -93,6 +94,9 @@ namespace rvl {
 
 				//m_GameObjects.push_back(rect);
 			}
+		}
+		for (auto gameObject : m_GameObjects) {
+			gameObject->Start();
 		}
 	}
 
@@ -119,6 +123,7 @@ namespace rvl {
 				  });
 
 		for (auto object : m_GameObjects) {
+			object->Update(); // Remember to remove.
 			object->Draw();
 		}
 	}

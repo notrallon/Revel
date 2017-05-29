@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <Lua/lua.hpp>
 #include <LuaBridge/LuaBridge.h>
+#include <Box2D/Box2D.h>
 
 namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
@@ -18,5 +19,6 @@ namespace rvl {
 		Time*				time;
 		sf::RenderWindow*	window;
 		lua_State*			luaState;
+		b2World*			physicsWorld;
 	};
 }

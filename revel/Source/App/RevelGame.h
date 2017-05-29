@@ -45,6 +45,7 @@ namespace rvl {
 		sf::RenderWindow		m_Window;
 		Time					m_Time;
 		Scene					m_Scene;
+		b2World*				m_PhysicsWorld;
 
 		SharedContext			m_Context;
 
