@@ -19,11 +19,9 @@ namespace rvl {
             gameObject->SetPosition(object->GetX(), object->GetY());
             m_GameObjects.push_back(gameObject);
 			if (object->GetEllipse() != 0) {
-				/*sf::CircleShape* circle = new sf::CircleShape(object->GetWidth() / 2);
-				circle->setFillColor(sf::Color(0, 255, 0, 50));
-				circle->setPosition(object->GetX(), object->GetY());
-				m_GameObjects.push_back(circle);*/
+				// TODO (Decide how to use elipse shapes.)
 			} else if (object->GetPolygon() != 0) {
+                // TODO (Decide how to handle polygon shapes.)
 				/*sf::ConvexShape* polygon = new sf::ConvexShape(object->GetPolygon()->GetNumPoints());
 
 				for (uint32 i = 0; i < polygon->getPointCount(); i++) { polygon->setPoint(i, sf::Vector2f(object->GetPolygon()->GetPoint(i).x, object->GetPolygon()->GetPoint(i).y)); }
@@ -34,6 +32,7 @@ namespace rvl {
 
 				m_GameObjects.push_back(polygon);*/
 			} else if (object->GetPolyline() != 0) {
+                // TODO (Decide how to handle poly lines.)
 				/*sf::ConvexShape* polygon = new sf::ConvexShape(object->GetPolyline()->GetNumPoints());
 
 				for (uint32 i = 0; i < polygon->getPointCount(); i++) { polygon->setPoint(i, sf::Vector2f(object->GetPolyline()->GetPoint(i).x, object->GetPolyline()->GetPoint(i).y)); }
@@ -65,7 +64,9 @@ namespace rvl {
 
 					//rect->setTextureRect(sf::IntRect(tu * tileSize, tv * tileSize, tileSize, tileSize));
                     sprite->SetTextureRect(sf::IntRect(margin + tu * (tileWidth + spacing), margin + tv * (tileHeight + spacing), tileWidth, tileHeight));
-					sprite->SetOrigin(0.0f, sprite->GetSize().y);
+					//sprite->SetOrigin(0.0f, sprite->GetSize().y);
+                    //sprite->SetPosition()
+                    gameObject->SetPosition(gameObject->GetPosition().x, gameObject->GetPosition().y - object->GetHeight());
 				} else {
 					//rect->setFillColor(sf::Color(0, 0, 255, 125));
 				}

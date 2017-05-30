@@ -16,7 +16,7 @@ namespace rvl {
 		b2PolygonShape groundBox;
 
 		groundBox.SetAsBox((m_GameObject->GetTransform().GetSize().x / 2.0f),
-							m_GameObject->GetTransform().GetSize().y / 2.0f);
+							m_GameObject->GetTransform().GetSize().y / 2.0f, b2Vec2((m_GameObject->GetTransform().GetSize().x / 2.0f), (m_GameObject->GetTransform().GetSize().y / 2.0f)), 0);
 
 		b2FixtureDef fixturedef;
 		fixturedef.shape = &groundBox;
@@ -59,7 +59,6 @@ namespace rvl {
 
 		sf::Vector2f size = m_GameObject->GetTransform().GetSize();
 		b2Vec2 pos = m_Body->GetPosition();
-
 		shape.setSize(size);
 		shape.setFillColor(sf::Color::Black);
 		shape.setPosition(pos.x, pos.y);

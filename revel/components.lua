@@ -11,13 +11,15 @@ function Update()
 	KeyS = rvl.Keyboard.IsKeyPressed(keyboard.S)
 	KeyD = rvl.Keyboard.IsKeyPressed(keyboard.D)
 
+	local speed = 100;
+
 	if KeyA then
-		collider:Move(-20.0, 0.0)
+		collider:Move(-speed, 0.0)
 	elseif KeyD then
-		collider:Move(20.0, 0.0)
+		collider:Move(speed, 0.0)
 	elseif KeyW then
-		collider:Move(0.0, -20.0)
+		collider:Move(0.0, -speed)
 	elseif KeyS then
-		collider:Move(0.0, 20.0)
+		collider:Move(0.0, speed)
 	end
 end

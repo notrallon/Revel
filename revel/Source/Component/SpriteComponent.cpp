@@ -46,6 +46,14 @@ namespace rvl {
 		//m_Sprite->setTextureRect(rect);
 		m_Rectangle.setTextureRect(rect);
 	}
+
+    void SpriteComponent::SetPosition(float x, float y) {
+        m_Rectangle.setPosition(sf::Vector2f(x, y));
+    }
+
+    const sf::Vector2f & SpriteComponent::GetPosition() const {
+        return m_Rectangle.getPosition();
+    }
     
     const sf::Vector2f& SpriteComponent::GetSize() const {
         // TODO: insert return statement here
