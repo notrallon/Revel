@@ -21,6 +21,7 @@ namespace rvl {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
 			std::string file = m_Map->GetFilename();
 			Purge();
+			m_Context->luaState = luaL_newstate();
 			Load(file);
 		}
 	}
@@ -108,11 +109,20 @@ namespace rvl {
 	void Scene::Purge() {
 		for (auto layer : m_SceneLayers) {
 			delete layer;
+			layer = nullptr;
 		}
 
 		for (auto tileset : m_Tilesets) {
 			delete tileset;
+			tileset = nullptr;
 		}
+
+		lua_pop(m_Context->luaState, 1);
+
+		//delete m_Context->luaState;
+		//m_Context->luaState = nullptr;
+
+		//m_Context->physicsWorld->DestroyBody(m_Context->physicsWorld->GetBodyList());
 
 		m_SceneLayers.clear();
 		m_Tilesets.clear();

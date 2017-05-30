@@ -25,10 +25,13 @@ namespace rvl {
 		m_Body->CreateFixture(&fixturedef);
 		m_Body->SetFixedRotation(true);
 
+		m_GameObject->SetCollider(this);
+
 		m_Speed = b2Vec2(0.0f, 0.0f);
 	}
 	
 	BoxColliderComponent::~BoxColliderComponent() {
+		m_Context->physicsWorld->DestroyBody(m_Body);
 	}
 	
 	void BoxColliderComponent::Awake() {
@@ -41,19 +44,9 @@ namespace rvl {
 	}
 	
 	void BoxColliderComponent::Update() {
+		if (m_Body->GetType() == b2_staticBody) return;
+
 		m_Body->SetLinearVelocity(m_Speed);
-		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-		//	m_Body->SetLinearVelocity(b2Vec2(-20.0f, 0));
-		//} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-		//	//m_Body->ApplyForceToCenter(b2Vec2(100, 0), true);
-		//	m_Body->SetLinearVelocity(b2Vec2(20.0f, 0));
-		//} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-		//	//m_Body->ApplyForceToCenter(b2Vec2(0, -100), true);
-		//	m_Body->SetLinearVelocity(b2Vec2(0, -20.0f));
-		//} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-		//	//m_Body->ApplyForceToCenter(b2Vec2(0, 100), true);
-		//	m_Body->SetLinearVelocity(b2Vec2(0, 20.0f));
-		//}
 		m_Speed.x = 0.0f;
 		m_Speed.y = 0.0f;
 	}
@@ -76,7 +69,7 @@ namespace rvl {
 	void BoxColliderComponent::OnDestroy() {
 	}
 	
-	const sf::Vector2f & BoxColliderComponent::GetPosition() const {
+	const sf::Vector2f& BoxColliderComponent::GetPosition() const {
 		sf::Vector2f pos(m_Body->GetPosition().x, m_Body->GetPosition().y);
 		return pos;
 	}

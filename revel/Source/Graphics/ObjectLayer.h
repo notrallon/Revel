@@ -28,7 +28,6 @@ namespace rvl {
 
 	private:
 		std::vector<GameObject*>	m_GameObjects;
-		sf::Shape*					m_Player;
         rvl::SharedContext*         m_Context;
 	};
 }

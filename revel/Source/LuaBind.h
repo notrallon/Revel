@@ -9,5 +9,5 @@ namespace rvl {
 	template<typename T>
 	void Bind(lua_State* L);
 
-	void BindAll(SharedContext* context);
+	void BindAll(SharedContext* context, lua_State*);
 }

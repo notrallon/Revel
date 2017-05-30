@@ -21,6 +21,9 @@ namespace rvl {
 	}
 	
 	void TransformComponent::Update() {
+		const BoxCollider* collider = m_GameObject->GetCollider();
+		if (collider == nullptr) return;
+		SetPosition(collider->GetPosition().x, collider->GetPosition().y);
 	}
 	
 	void TransformComponent::LateUpdate() {

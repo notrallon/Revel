@@ -29,7 +29,9 @@ namespace rvl {
 		static void				DoBind(lua_State* L);
 
 	private:
-		std::function<void()> m_Update;
-		std::function<void()> m_Start;
+		std::function<void()>	m_Update;
+		std::function<void()>	m_Start;
+
+		lua_State*				m_LuaState;
 	};
 }

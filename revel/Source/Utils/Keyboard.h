@@ -6,7 +6,7 @@ namespace rvl {
 	struct Keyboard {
 		friend void Bind<Keyboard>(lua_State* lua);
 
-		static bool IsKeyPressed(/*int32 keycode*/);
+		static bool IsKeyPressed(int32 keycode);
 
 		int32 A			=	sf::Keyboard::A;
 		int32 B			=	sf::Keyboard::B;

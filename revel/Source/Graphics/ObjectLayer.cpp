@@ -8,18 +8,9 @@
 #include <Tmx/TmxTileset.h>
 
 namespace rvl {
-	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets, rvl::SharedContext* context): m_Player(nullptr), m_Context(context) {
+	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets, rvl::SharedContext* context): m_Context(context) {
 		// Loop through all objects and create shapes depending on what type of object it is
-		
-		//lua_State* L = luaL_newstate();
-		//luaL_openlibs(L);
-		rvl::BindAll(context);
-		//rvl::Bind<GameObject>(L);
-		//Bind<SpriteComponent>(L);
-/*
-		if (luaL_dofile(L, "components.lua")) {
-			std::cerr << lua_tostring(L, -1) << std::endl;
-		}*/
+		//rvl::BindAll(context);
 
 		for (auto object : objectGroup->GetObjects()) {
             rvl::GameObject* gameObject = new rvl::GameObject(m_Context);
@@ -112,10 +103,6 @@ namespace rvl {
 	}
 
 	void ObjectLayer::Draw(sf::RenderWindow& window) {
-		if (m_Player != nullptr) {
-			m_Player->setPosition(window.mapPixelToCoords(sf::Mouse::getPosition(), window.getView()));
-		}
-
 		std::sort(m_GameObjects.begin(), 
 				  m_GameObjects.end(), 
 				  [](const rvl::GameObject* A, const GameObject* B) { 

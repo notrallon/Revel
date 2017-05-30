@@ -11,8 +11,8 @@ namespace rvl {
 		T::DoBind(L);
 	}
 
-	void BindAll(SharedContext* context) {
-		lua_State* L = luaL_newstate();
+	void BindAll(SharedContext* context, lua_State* L) {
+		//lua_State* L = luaL_newstate();
 		context->luaState = L;
 		luaL_openlibs(L);
 

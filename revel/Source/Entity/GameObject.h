@@ -123,6 +123,9 @@ namespace rvl {
 
         rvl::SharedContext*     GetContext() const;
 
+		const BoxCollider*		GetCollider() const;
+		void					SetCollider(rvl::BoxCollider*);
+
 	protected:
 		static void DoBind(lua_State* L);
 
@@ -132,6 +135,7 @@ namespace rvl {
 	    ComponentContainer		m_Components;
         rvl::SharedContext*		m_Context;
 		rvl::Transform*			m_Transform;
+		rvl::BoxCollider*		m_BoxCollider;
     };
 
 }

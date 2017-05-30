@@ -12,6 +12,7 @@ namespace rvl {
 	}
 
 	RevelGame::~RevelGame() {
+		//delete m_PhysicsWorld;
 	}
 	
 	void RevelGame::Start() {
@@ -53,7 +54,6 @@ namespace rvl {
 
         m_Scene.SetContext(&m_Context);
 		m_Scene.Load(mapstring);
-
 		Run();
 	}
 	

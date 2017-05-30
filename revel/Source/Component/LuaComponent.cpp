@@ -11,12 +11,14 @@ namespace rvl {
 	LuaComponent::LuaComponent(GameObject * gameObject) : Component(gameObject), m_Update(nullptr) {
 		m_GameObject = gameObject;
 		m_Context = m_GameObject->GetContext();
-
-
-		BindAll(m_Context);
+		m_LuaState = luaL_newstate();
+		BindAll(m_Context, m_LuaState);
 	}
 	
 	LuaComponent::~LuaComponent() {
+		m_Start.~function();
+		m_Update.~function();
+		lua_close(m_LuaState);
 	}
 	
 	void LuaComponent::Awake() {
@@ -24,7 +26,6 @@ namespace rvl {
 	
 	void LuaComponent::Start() {
 		if (m_Start != nullptr) {
-			std::cout << "Running script start function" << std::endl;
 			m_Start();
 		}
 	}
@@ -50,7 +51,7 @@ namespace rvl {
 	void LuaComponent::AddScript(std::string file) {
 		lua_State* L = m_Context->luaState;
 
-		luabridge::push(L, (GameObject const*)&m_GameObject);
+		//luabridge::push(L, (GameObject const*)&m_GameObject);
 		luabridge::setGlobal(L, (GameObject*)m_GameObject, "gameObject");
 		//lua_setglobal(L, "gameObject");
 
@@ -67,6 +68,8 @@ namespace rvl {
 		if (luabridge::getGlobal(m_Context->luaState, "Update").isFunction()) {
 			m_Update = luabridge::getGlobal(m_Context->luaState, "Update");
 		}
+
+		lua_pop(L, 1);
 	}
 	
 	void LuaComponent::DoBind(lua_State* L) {

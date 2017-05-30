@@ -1,22 +1,23 @@
-sprite = gameObject:GetSprite();
-
-spriteWidth = sprite.width;
-
 keyboard = rvl.Keyboard();
 
 function Start()
-	script = gameObject:GetScript();
 	collider = gameObject:AddBoxCollider();
 	collider.isStatic = false;
 end
 
-function Test()
-	sprite.width = sprite.width + 0.1;
-	sprite.height = sprite.width;
-end
-
 function Update()
-	if rvl.Keyboard:IsKeyPressed() then
+	KeyW = rvl.Keyboard.IsKeyPressed(keyboard.W)
+	KeyA = rvl.Keyboard.IsKeyPressed(keyboard.A)
+	KeyS = rvl.Keyboard.IsKeyPressed(keyboard.S)
+	KeyD = rvl.Keyboard.IsKeyPressed(keyboard.D)
+
+	if KeyA then
 		collider:Move(-20.0, 0.0)
+	elseif KeyD then
+		collider:Move(20.0, 0.0)
+	elseif KeyW then
+		collider:Move(0.0, -20.0)
+	elseif KeyS then
+		collider:Move(0.0, 20.0)
 	end
 end

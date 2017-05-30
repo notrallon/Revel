@@ -1,8 +1,8 @@
 #include "Keyboard.h"
 
 namespace rvl {
-	bool Keyboard::IsKeyPressed(/*int32 keycode*/) {
-		return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A);
+	bool Keyboard::IsKeyPressed(int32 keycode) {
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keycode));
 	}
 
 	void Keyboard::DoBind(lua_State * Lua) {

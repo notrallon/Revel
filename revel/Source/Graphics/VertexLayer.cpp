@@ -115,6 +115,7 @@ namespace rvl {
 	VertexLayer::~VertexLayer() {
 		for (auto vertexLayer : m_VertexArrays) {
 			delete vertexLayer;
+			vertexLayer = nullptr;
 		}
 		m_VertexArrays.clear();
 	}

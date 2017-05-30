@@ -1,11 +1,11 @@
 #include "GameObject.h"
 
 namespace rvl {
-	GameObject::GameObject() {
+	GameObject::GameObject() : m_BoxCollider(nullptr) {
 		m_Transform = AddComponent<rvl::Transform>();
 	}
 	
-	GameObject::GameObject(rvl::SharedContext * context) : m_Context(context) {
+	GameObject::GameObject(rvl::SharedContext * context) : m_Context(context), m_BoxCollider(nullptr) {
 		m_Transform = AddComponent<rvl::Transform>();
 	}
 	
@@ -61,6 +61,14 @@ namespace rvl {
 	
 	rvl::SharedContext* GameObject::GetContext() const {
 		return m_Context;
+	}
+
+	const BoxCollider* GameObject::GetCollider() const {
+		return m_BoxCollider;
+	}
+
+	void GameObject::SetCollider(rvl::BoxCollider* collider) {
+		m_BoxCollider = collider;
 	}
 	
 	void GameObject::DoBind(lua_State * L) {

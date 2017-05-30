@@ -25,10 +25,10 @@ namespace rvl {
     }
 
     void SpriteComponent::Update() {
+		m_Rectangle.setPosition(m_GameObject->GetPosition());
     }
 
     void SpriteComponent::LateUpdate() {
-		m_Rectangle.setPosition(m_GameObject->GetPosition());
     }
 
     void SpriteComponent::Draw() {
