@@ -7,7 +7,7 @@
 
 namespace rvl {
 	template<typename T>
-	void Bind(lua_State* L);
+	extern void Bind(lua_State* L);
 
-	void BindAll(SharedContext* context, lua_State*);
+	extern void BindAll(SharedContext* context, lua_State*);
 }

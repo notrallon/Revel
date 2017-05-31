@@ -98,6 +98,7 @@ namespace rvl {
 	ObjectLayer::~ObjectLayer() {
 		for (auto object : m_GameObjects) {
 			delete object;
+			object = nullptr;
 		}
 		m_GameObjects.clear();
 	}

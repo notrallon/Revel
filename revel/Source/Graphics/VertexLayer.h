@@ -15,7 +15,7 @@ namespace rvl {
     class VertexLayer : public SceneLayer {
     public:
                                             VertexLayer(Tmx::TileLayer* layer, int tileWidth, int tileHeight, std::vector<sf::Texture*>& tileset);
-                                            ~VertexLayer() override;
+        virtual                             ~VertexLayer() override;
 
 
 	    /////////////////////////////////////

@@ -1,23 +1,23 @@
 #include "Components.h"
 #include "Entity/GameObject.h"
-#include <Lua/lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+//#include <Lua/lua.hpp>
+//#include <LuaBridge/LuaBridge.h>
 #include <iostream>
 
 namespace rvl {
 	LuaComponent::LuaComponent() {
 	}
 	
-	LuaComponent::LuaComponent(GameObject * gameObject) : Component(gameObject), m_Update(nullptr) {
-		m_GameObject = gameObject;
+	LuaComponent::LuaComponent(GameObject * gameObject) : Component(gameObject), m_Update(nullptr), m_LuaState(luaL_newstate()) {
+		//m_GameObject = gameObject;
 		m_Context = m_GameObject->GetContext();
-		m_LuaState = luaL_newstate();
+		//m_LuaState = luaL_newstate();
 		BindAll(m_Context, m_LuaState);
 	}
 	
 	LuaComponent::~LuaComponent() {
-		lua_pop(m_LuaState, -1);
 		lua_close(m_LuaState);
+		m_LuaState = nullptr;
 	}
 	
 	void LuaComponent::Awake() {
@@ -48,27 +48,23 @@ namespace rvl {
 	}
 
 	void LuaComponent::AddScript(std::string file) {
-		lua_State* L = m_Context->luaState;
 
 		//luabridge::push(L, (GameObject const*)&m_GameObject);
-		luabridge::setGlobal(L, (GameObject*)m_GameObject, "gameObject");
+		luabridge::setGlobal(m_LuaState, (GameObject*)m_GameObject, "gameObject");
 		//lua_setglobal(L, "gameObject");
 
 
-		if (luaL_dofile(L, file.c_str())) {
-			std::cerr << lua_tostring(L, -1) << std::endl;
-			//return 1;
+		if (luaL_dofile(m_LuaState, file.c_str())) {
+			std::cerr << lua_tostring(m_LuaState, -1) << std::endl;
 		}
 
-		if (luabridge::getGlobal(m_Context->luaState, "Start").isFunction()) {
-			m_Start = luabridge::getGlobal(m_Context->luaState, "Start");
+		if (luabridge::getGlobal(m_LuaState, "Start").isFunction()) {
+			m_Start = luabridge::getGlobal(m_LuaState, "Start");
 		}
 
-		if (luabridge::getGlobal(m_Context->luaState, "Update").isFunction()) {
-			m_Update = luabridge::getGlobal(m_Context->luaState, "Update");
+		if (luabridge::getGlobal(m_LuaState, "Update").isFunction()) {
+			m_Update = luabridge::getGlobal(m_LuaState, "Update");
 		}
-
-		lua_pop(L, 1);
 	}
 	
 	void LuaComponent::DoBind(lua_State* L) {

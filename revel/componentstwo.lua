@@ -1,6 +1,6 @@
 function Start()
-	collider = gameObject:GetBoxCollider();
-	collider.isStatic = false;
+	--collider = gameObject:GetBoxCollider();
+    ---collider.isStatic = false;
 end
 
 function Update()

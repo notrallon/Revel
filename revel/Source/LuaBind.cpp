@@ -12,8 +12,6 @@ namespace rvl {
 	}
 
 	void BindAll(SharedContext* context, lua_State* L) {
-		//lua_State* L = luaL_newstate();
-		context->luaState = L;
 		luaL_openlibs(L);
 
 		rvl::Bind<GameObject>(L);
@@ -22,13 +20,5 @@ namespace rvl {
 		rvl::Bind<LuaComponent>(L);
 		rvl::Bind<BoxCollider>(L);
 		rvl::Bind<Keyboard>(L);
-
-		/*if (luaL_dofile(L, "components.lua")) {
-			std::cerr << lua_tostring(L, -1) << std::endl;
-		}*/
-
-		//luabridge::LuaRef spriteWidth = luabridge::getGlobal(L, "spriteWidth");
-
-		//std::cout << "Sprite width is: " << spriteWidth << std::endl;
 	}
 }

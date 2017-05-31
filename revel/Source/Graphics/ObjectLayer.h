@@ -17,7 +17,7 @@ namespace rvl {
 	class ObjectLayer : public SceneLayer {
 	public:
 									ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets, rvl::SharedContext* context);
-									~ObjectLayer() override;
+		virtual						~ObjectLayer() override;
 
 		////////////////////
 		/// \brief rvl::Draw
