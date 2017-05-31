@@ -1,25 +1,19 @@
-keyboard = rvl.Keyboard();
-
 function Start()
-	collider = gameObject:AddBoxCollider();
+	gameObject:AddBoxCollider();
+	collider = gameObject:GetBoxCollider();
 	collider.isStatic = false;
 end
 
 function Update()
-	KeyW = rvl.Keyboard.IsKeyPressed(keyboard.W)
-	KeyA = rvl.Keyboard.IsKeyPressed(keyboard.A)
-	KeyS = rvl.Keyboard.IsKeyPressed(keyboard.S)
-	KeyD = rvl.Keyboard.IsKeyPressed(keyboard.D)
-
 	local speed = 250;
 
-	if KeyA then
+	if rvl.Keyboard.IsKeyPressed(rvl.Keyboard.A) then
 		collider:Move(-speed, 0.0)
-	elseif KeyD then
+	elseif rvl.Keyboard.IsKeyPressed(rvl.Keyboard.D) then
 		collider:Move(speed, 0.0)
-	elseif KeyW then
+	elseif rvl.Keyboard.IsKeyPressed(rvl.Keyboard.W) then
 		collider:Move(0.0, -speed)
-	elseif KeyS then
+	elseif rvl.Keyboard.IsKeyPressed(rvl.Keyboard.S) then
 		collider:Move(0.0, speed)
 	end
 end

@@ -66,7 +66,7 @@ namespace rvl {
         ///
         /// \returns Found component/nullptr.
         ////////////////////
-        T* GetComponent() const {
+        T* GetComponent() {
             auto component = m_Components.find(typeid(T));
             if (component != m_Components.end()) {
                 return static_cast<T*>(component->second);

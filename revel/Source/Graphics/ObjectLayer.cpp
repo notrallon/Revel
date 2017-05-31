@@ -10,7 +10,6 @@
 namespace rvl {
 	ObjectLayer::ObjectLayer(Tmx::ObjectGroup* objectGroup, const std::vector<sf::Texture*>& tilesets, rvl::SharedContext* context): m_Context(context) {
 		// Loop through all objects and create shapes depending on what type of object it is
-		//rvl::BindAll(context);
 
 		for (auto object : objectGroup->GetObjects()) {
             rvl::GameObject* gameObject = new rvl::GameObject(m_Context);

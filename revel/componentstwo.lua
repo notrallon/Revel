@@ -1,11 +1,6 @@
--- gameObject = rvl.GameObject();
--- gameObject = {};
-
-
 function Start()
-	--gameObject:AddBoxCollider();
-	-----------------
-	-- sprite.width = 5.0;
+	collider = gameObject:GetBoxCollider();
+	collider.isStatic = false;
 end
 
 function Update()
