@@ -1,11 +1,11 @@
 #pragma once
 
 #include "LuaBind.h"
-#include "Components.h";
+#include "Components.h"
 #include "Common.h"
 #include "SharedContext.h"
 
-#include <vector>;
+#include <vector>
 #include <typeindex>
 #include <typeinfo>
 #include <unordered_map>
