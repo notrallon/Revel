@@ -11,7 +11,7 @@ function Update()
 	KeyS = rvl.Keyboard.IsKeyPressed(keyboard.S)
 	KeyD = rvl.Keyboard.IsKeyPressed(keyboard.D)
 
-	local speed = 100;
+	local speed = 250;
 
 	if KeyA then
 		collider:Move(-speed, 0.0)

@@ -16,8 +16,9 @@ namespace rvl {
 	}
 	
 	LuaComponent::~LuaComponent() {
-		m_Start.~function();
-		m_Update.~function();
+		//m_Start.~function();
+		//m_Update.~function();
+		lua_pop(m_LuaState, -1);
 		lua_close(m_LuaState);
 	}
 	

@@ -55,14 +55,14 @@ namespace rvl {
 	}
 	
 	void BoxColliderComponent::Draw() {
-		sf::RectangleShape shape;
+/*		sf::RectangleShape shape;
 
 		sf::Vector2f size = m_GameObject->GetTransform().GetSize();
 		b2Vec2 pos = m_Body->GetPosition();
 		shape.setSize(size);
 		shape.setFillColor(sf::Color::Black);
 		shape.setPosition(pos.x, pos.y);
-		m_Context->window->draw(shape);
+		m_Context->window->draw(shape);*/
 	}
 	
 	void BoxColliderComponent::OnDestroy() {

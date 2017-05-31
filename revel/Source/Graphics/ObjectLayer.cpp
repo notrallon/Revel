@@ -78,6 +78,10 @@ namespace rvl {
 					component->AddScript(propList.find("script")->second);
 				}
 
+				if (propList.find("collider") != propList.end()) {
+					auto component = gameObject->AddComponent<BoxCollider>();
+				}
+
 				// We grab the player just so we can use it for debugging atm
 				/*if (object->GetName() == "player-start") {
 					m_Player = rect;

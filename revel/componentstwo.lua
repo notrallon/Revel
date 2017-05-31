@@ -1,9 +1,9 @@
 -- gameObject = rvl.GameObject();
 -- gameObject = {};
 
- 
+
 function Start()
-	gameObject:AddBoxCollider();
+	--gameObject:AddBoxCollider();
 	-----------------
 	-- sprite.width = 5.0;
 end
