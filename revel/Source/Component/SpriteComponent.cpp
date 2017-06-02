@@ -43,7 +43,6 @@ namespace rvl {
     }
 
 	void SpriteComponent::SetTextureRect(const sf::IntRect& rect) {
-		//m_Sprite->setTextureRect(rect);
 		m_Rectangle.setTextureRect(rect);
 	}
 
@@ -55,15 +54,13 @@ namespace rvl {
         return m_Rectangle.getPosition();
     }
     
-    const sf::Vector2f& SpriteComponent::GetSize() const {
-        // TODO: insert return statement here
-        //return sf::Vector2f(m_Sprite->getTextureRect().width, m_Sprite->getTextureRect().height);
-		return m_Rectangle.getSize();
-    }
-
 	void SpriteComponent::SetSize(float x, float y) {
 		m_Rectangle.setSize(sf::Vector2f(x, y));
 	}
+
+	const sf::Vector2f& SpriteComponent::GetSize() const {
+		return m_Rectangle.getSize();
+    }
 
 	const float & SpriteComponent::GetWidth() const {
 		return GetSize().x;

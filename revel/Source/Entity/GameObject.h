@@ -118,9 +118,26 @@ namespace rvl {
 	    /// \return The transform of the gameobject.
         ////////////////////
 	    const rvl::Transform&   GetTransform() const;
+
+		////////////////////
+		/// \brief sf::Vector2f& GetPosition() const
+		///
+		/// \return The position of this gameobject.
+		////////////////////
 		const sf::Vector2f&		GetPosition() const;
+
+		////////////////////
+		/// \brief void SetPosition(float x, float y)
+		///
+		/// \return Set the position of this gameobject.
+		////////////////////
         void                    SetPosition(float x, float y);
 
+		////////////////////
+		/// \brief SharedContext* GetContext() const
+		///
+		/// \return The context this gameobject is bound to.
+		////////////////////
         rvl::SharedContext*     GetContext() const;
 
 		const BoxCollider*		GetCollider() const;

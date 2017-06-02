@@ -26,8 +26,8 @@ namespace rvl {
         void                    SetTexture(const sf::Texture& texture);
 		void			        SetTextureRect(const sf::IntRect& rect);
 
-        void                    SetPosition(float x, float y);
         const sf::Vector2f&     GetPosition() const;
+        void                    SetPosition(float x, float y);
 
         const sf::Vector2f&     GetSize() const;
 		void					SetSize(float x, float y);

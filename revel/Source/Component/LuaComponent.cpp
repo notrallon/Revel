@@ -48,11 +48,8 @@ namespace rvl {
 	}
 
 	void LuaComponent::AddScript(std::string file) {
-
-		//luabridge::push(L, (GameObject const*)&m_GameObject);
 		luabridge::setGlobal(m_LuaState, (GameObject*)m_GameObject, "gameObject");
-		//lua_setglobal(L, "gameObject");
-
+		
 
 		if (luaL_dofile(m_LuaState, file.c_str())) {
 			std::cerr << lua_tostring(m_LuaState, -1) << std::endl;
