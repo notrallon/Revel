@@ -46,21 +46,21 @@ namespace rvl {
 		m_Rectangle.setTextureRect(rect);
 	}
 
+	const sf::Vector2f & SpriteComponent::GetPosition() const {
+		return m_Rectangle.getPosition();
+	}
+
     void SpriteComponent::SetPosition(float x, float y) {
         m_Rectangle.setPosition(sf::Vector2f(x, y));
     }
-
-    const sf::Vector2f & SpriteComponent::GetPosition() const {
-        return m_Rectangle.getPosition();
-    }
     
+	const sf::Vector2f& SpriteComponent::GetSize() const {
+		return m_Rectangle.getSize();
+	}
+
 	void SpriteComponent::SetSize(float x, float y) {
 		m_Rectangle.setSize(sf::Vector2f(x, y));
 	}
-
-	const sf::Vector2f& SpriteComponent::GetSize() const {
-		return m_Rectangle.getSize();
-    }
 
 	const float & SpriteComponent::GetWidth() const {
 		return GetSize().x;
