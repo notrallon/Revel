@@ -11,6 +11,8 @@
 #include <unordered_map>
 #include <iostream>
 
+// Created by Richard Norqvist
+
 namespace rvl {
     class GameObject
     {

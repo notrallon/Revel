@@ -13,11 +13,11 @@ Inheritance diagram for rvl\+:\+:Object\+Layer\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classrvl_1_1_object_layer_a6d05cb33022f41cf32d866d6857bade5}\label{classrvl_1_1_object_layer_a6d05cb33022f41cf32d866d6857bade5}} 
-{\bfseries Object\+Layer} (Tmx\+::\+Object\+Group $\ast$object\+Group, const std\+::vector$<$ sf\+::\+Texture $\ast$$>$ \&tilesets)
+\mbox{\Hypertarget{classrvl_1_1_object_layer_a653283acf3afa9b685f3f888f8670a83}\label{classrvl_1_1_object_layer_a653283acf3afa9b685f3f888f8670a83}} 
+{\bfseries Object\+Layer} (Tmx\+::\+Object\+Group $\ast$object\+Group, const std\+::vector$<$ sf\+::\+Texture $\ast$$>$ \&tilesets, \hyperlink{structrvl_1_1_shared_context}{rvl\+::\+Shared\+Context} $\ast$context)
 \item 
 virtual void \hyperlink{classrvl_1_1_object_layer_a3b29bd63ae4233eba84817bfe9eecae9}{Draw} (sf\+::\+Render\+Window \&window)
-\begin{DoxyCompactList}\small\item\em rvl\+::\+Draw \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Draw. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -32,9 +32,9 @@ virtual void \hyperlink{classrvl_1_1_object_layer_a3b29bd63ae4233eba84817bfe9eec
 
 
 
-rvl\+::\+Draw 
+Draw. 
 
-Draw all the objects to a specified sf\+::\+Render\+Window 
+Sorts all gameobjects on this layer and then draws them out. 
 
 Implements \hyperlink{classrvl_1_1_scene_layer}{rvl\+::\+Scene\+Layer}.
 

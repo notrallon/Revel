@@ -5,6 +5,8 @@
 
 #include <functional>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	class GameObject;
 
@@ -23,6 +25,10 @@ namespace rvl {
 		virtual void            Draw()          override;
 		virtual void            OnDestroy()     override;
 
+		////////////////////
+		/// \brief void AddScript(std::string)
+		///
+		/// Adds a script to this LuaComponent.
 		void					AddScript(std::string file);
 
 	protected:

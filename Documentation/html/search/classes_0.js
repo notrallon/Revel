@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['component',['Component',['../classrvl_1_1_component.html',1,'rvl']]]
+  ['boxcollidercomponent',['BoxColliderComponent',['../classrvl_1_1_box_collider_component.html',1,'rvl']]]
 ];

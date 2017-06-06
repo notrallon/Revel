@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gameobject',['GameObject',['../classrvl_1_1_game_object.html',1,'rvl']]]
+  ['drawablecomponent',['DrawableComponent',['../classrvl_1_1_drawable_component.html',1,'rvl']]]
 ];

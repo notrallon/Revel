@@ -2,10 +2,17 @@
 
 #include "LuaBind.h"
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	struct Keyboard {
 		friend void Bind<Keyboard>(lua_State* lua);
 
+		////////////////////
+		/// \brief static bool IsKeyPressed(uint8 keycode)
+		///
+		/// Checks if a specified key is pressed.
+		////////////////////
 		static bool IsKeyPressed(uint8 keycode);
 
 		static uint8 A;

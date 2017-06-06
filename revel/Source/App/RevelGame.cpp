@@ -71,7 +71,7 @@ namespace rvl {
 		f32 fps			= 0.0f;
 		f32 timepassed	= 0.0f;
 		f32 startTime	= 0.0f;
-		uint32 frames	= 0.0f;
+		uint32 frames	= 0;
 
 		while (m_Window.isOpen()) {
 			m_Time.Update(); // Time should always be updated first

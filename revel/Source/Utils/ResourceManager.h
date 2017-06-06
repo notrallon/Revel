@@ -2,7 +2,7 @@
 
 #include "Common.h"
 
-
+// Created by Richard Norqvist
 
 namespace rvl {
     template <typename Derived, typename T>

@@ -16,6 +16,8 @@
 
 #include <SFML/Graphics.hpp>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
 	///
@@ -27,27 +29,32 @@ namespace rvl {
 									Scene();
 									~Scene();
 
-		/////////////////////////////////////
+		////////////////////
 		/// \brief void Update()
 		///
 		/// Updates the scene
-		/////////////////////////////////////
+		////////////////////
 		void						Update();
 
-		/////////////////////////////////////
+		////////////////////
 		/// \brief Draw(sf::RenderWindow& window)
 		///
 		/// Draws the Scene to a specified sf::RenderWindow
-		/////////////////////////////////////
+		////////////////////
 		void						Draw(sf::RenderWindow& window);
 
-		/////////////////////////////////////
+		////////////////////
 		/// \brief bool Load(std::string filePath)
 		///
 		/// Loads a Tmx map from a specified filepath
-		/////////////////////////////////////
+		////////////////////
 		bool						Load(std::string filePath);
 
+		////////////////////
+		/// \brief void SetContext(rvl::SharedContext*)
+		///
+		/// Sets the scenes context to a specified instance.
+		////////////////////
         void                        SetContext(rvl::SharedContext* context);
 	private:
 		typedef std::vector<GameObject*>		GameObjectContainer;
@@ -64,6 +71,11 @@ namespace rvl {
 		int							m_TileHeight;
 		int							m_TileWidth;
 
+		////////////////////
+		/// \brief SceneLayer* CreateLayerFromTmx(Tmx::Layer*)
+		///
+		/// Sets the scenes context to a specified instance.
+		////////////////////
 		SceneLayer*					CreateLayerFromTmx(Tmx::Layer* layer);
 
 		void						Purge();

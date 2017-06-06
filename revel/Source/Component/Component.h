@@ -4,6 +4,8 @@
 #include "SharedContext.h"
 #include <SFML/Graphics.hpp>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	class GameObject;
 	////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +32,6 @@ namespace rvl {
 	protected:
         GameObject*         m_GameObject;
         SharedContext*      m_Context;
-		bool				destroy;
 
 		static void DoBind(lua_State* L) {
 			using namespace luabridge;

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vertexlayer',['VertexLayer',['../classrvl_1_1_vertex_layer.html',1,'rvl']]]
+  ['resourcemanager',['ResourceManager',['../classrvl_1_1_resource_manager.html',1,'rvl']]],
+  ['revelgame',['RevelGame',['../classrvl_1_1_revel_game.html',1,'rvl']]]
 ];

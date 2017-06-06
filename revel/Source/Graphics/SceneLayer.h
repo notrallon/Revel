@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <Tmx/TmxLayer.h>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
 	///

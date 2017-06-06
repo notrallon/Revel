@@ -5,6 +5,8 @@
 
 #include <Tmx/TmxObjectGroup.h>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	class GameObject;
 	struct SharedContext;
@@ -20,9 +22,9 @@ namespace rvl {
 		virtual						~ObjectLayer() override;
 
 		////////////////////
-		/// \brief rvl::Draw
+		/// \brief Draw
 		///
-		/// Draw all the objects to a specified sf::RenderWindow
+		/// Sorts all gameobjects on this layer and then draws them out.
 		////////////////////
 		virtual void				Draw(sf::RenderWindow& window);
 

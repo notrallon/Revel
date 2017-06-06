@@ -6,6 +6,8 @@
 #include <LuaBridge/LuaBridge.h>
 #include <Box2D/Box2D.h>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	////////////////////////////////////////////////////////////////////////////////
 	///

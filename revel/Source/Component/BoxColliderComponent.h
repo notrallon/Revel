@@ -5,6 +5,8 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
 
+// Created by Richard Norqvist
+
 namespace rvl {
 	class BoxColliderComponent : public Component {
 		friend void Bind<BoxColliderComponent>(lua_State* L);
@@ -21,13 +23,45 @@ namespace rvl {
 		virtual void            Draw()          override;
 		virtual void            OnDestroy()     override;
 
-		const sf::Vector2f&		GetPosition() const;
-		const float&			GetXPosition() const;
-		const float&			GetYPosition() const;
 
-		const bool&				GetStatic() const;
+		////////////////////
+		/// \brief const sf::Vector2f& GetPosition() const
+		///
+		/// \return The colliders 2d position
+		const sf::Vector2f&		GetPosition()	const;
+
+		////////////////////
+		/// \brief const float& GetXPosition() const
+		///
+		/// \return The colliders X position.
+		const float&			GetXPosition()	const;
+
+		////////////////////
+		/// \brief const float& GetYPosition() const
+		///
+		/// \return The colliders Y position.
+		////////////////////
+		const float&			GetYPosition()	const;
+
+		////////////////////
+		/// \brief const bool& GetStatic() const
+		///
+		/// \return True if this collider is static, false if the collider is dynamic.
+		////////////////////
+		const bool&				GetStatic()		const;
+
+		////////////////////
+		/// \brief void SetStatic(bool isStatic)
+		///
+		/// Sets the collider to be static/dynamic
+		////////////////////
 		void					SetStatic(bool isStatic);
 
+		////////////////////
+		/// \brief void Move(const float& x, const float& y)
+		///
+		/// Sets the colliders velocity to a specified speed.
+		////////////////////
 		void					Move(const float& x, const float& y);
 
 	protected:
